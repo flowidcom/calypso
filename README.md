@@ -1,6 +1,6 @@
 # Calypso
 
-Calypso is fun project that started with the idea that part of craftsmanship is to build an assorted set of tools and techniques that lets a person build quickly new beautiful things.
+Calypso is a project that started with the idea that part of craftsmanship is to build an assorted set of tools and techniques that lets a person build quickly new beautiful things.
 
 Here are some of the ideas shown in this project:
 
