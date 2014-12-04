@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="urn:flowid.com:refd:v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:flowid.com:refd:v1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="CommonTypes.xsd"/>
+    <xs:include schemaLocation="LOG_CommonTypes.xsd"/>
+    <xs:element name="AddLogEntryRequest">
+        <xs:annotation>
+            <xs:documentation>Request</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="AbstractRequestType">
+                    <xs:sequence>
+                        <xs:element name="LogEntry" type="LogEntryType"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AddLogEntryResponse">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="AbstractResponseType">
+                    <xs:sequence>
+                        <xs:element name="LogEntry" type="LogEntryType" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,15 @@
+<configuration debug="true"> 
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> 
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <Pattern>%date %-5level %logger{12}-%line - %msg%n</Pattern>
+    </encoder>
+  </appender>
+
+  <logger name="com.flowid" level="DEBUG"/>
+  <logger name="org.apache.cxf" level="INFO"/>
+
+  <root level="ERROR">
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>

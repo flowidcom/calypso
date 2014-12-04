@@ -1,0 +1,10 @@
+<xs:schema xmlns="urn:flowid.com:refd:v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:flowid.com:refd:v1" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+    <xs:element name="Country" type="Country"/>
+    <xs:complexType name="Country">
+        <xs:attribute name="Code" type="xs:string"/>
+        <xs:attribute name="Name" type="xs:string"/>
+        <xs:attribute name="NationalDay" type="xs:date"/>
+        <xs:attribute name="LastUpdated" type="xs:dateTime"/>
+        <xs:anyAttribute namespace="##any" processContents="lax"/>
+    </xs:complexType>
+</xs:schema>

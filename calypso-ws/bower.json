@@ -1,0 +1,27 @@
+{
+    "name": "calypso",
+    "version": "1.0.0",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+
+    "dependencies": {
+        "bootstrap": "~3.1.1",
+        "jquery": "~1.11.1",
+        "jquery-ui": "~1.11.1",
+        "select2": "~3.4.6",
+        "datatables": "~1.10.0",
+        "datatables-plugins": "git://github.com/DataTables/Plugins#~1.0.0",
+        "tabletools": "git://github.com/DataTables/TableTools#2.2.3",
+		"uniform": "git://github.com/pixelmatrix/uniform#2.1.2",
+		
+        "sb-admin-2": "git://github.com/IronSummitMedia/startbootstrap-sb-admin-2#1.0.1",
+        "metisMenu": "git://github.com/onokumus/metisMenu#1.0.3",
+        "font-awesome" : "git://github.com/FortAwesome/Font-Awesome#4.2.0"
+    }
+}

@@ -1,0 +1,34 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:oxm="http://www.springframework.org/schema/oxm" xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:sec="http://www.springframework.org/schema/security" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:c="http://www.springframework.org/schema/c" xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:soap="http://cxf.apache.org/bindings/soap" xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+    xsi:schemaLocation="
+        http://cxf.apache.org/transports/http/configuration http://cxf.apache.org/schemas/configuration/http-conf.xsd
+        http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd
+        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd 
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd   
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd        
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.2.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+
+    <context:annotation-config />
+    <context:component-scan base-package="com.flowid.refd" />
+
+    <mvc:resources mapping="/jslib/**" location="/WEB-INF/jslib/" />
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
+    <mvc:resources mapping="/ts/**" location="/WEB-INF/ts/" />
+    <mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
+
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="100000000" />
+    </bean>
+
+    <import resource="classpath:spring/calypso.context.xml" />
+
+</beans>

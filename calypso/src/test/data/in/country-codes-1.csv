@@ -1,0 +1,22 @@
+Sort Order,Common Name,Formal Name,Type,Sub Type,Sovereignty,Capital,ISO 4217 Currency Code,ISO 4217 Currency Name,ITU-T Telephone Code,ISO 3166-1 2 Letter Code,ISO 3166-1 3 Letter Code,ISO 3166-1 Number,IANA Country Code TLD
+1,Afghanistan,Islamic State of Afghanistan,Independent State,,,Kabul,AFN,Afghani,93,AF,AFG,4,.af
+2,Albania,Republic of Albania,Independent State,,,Tirana,ALL,Lek,355,AL,ALB,8,.al
+3,Algeria,People's Democratic Republic of Algeria,Independent State,,,Algiers,DZD,Dinar,213,DZ,DZA,12,.dz
+4,Andorra,Principality of Andorra,Independent State,,,Andorra la Vella,EUR,Euro,376,AD,AND,20,.ad
+5,Angola,Republic of Angola,Independent State,,,Luanda,AOA,Kwanza,244,AO,AGO,24,.ao
+6,Antigua and Barbuda,,Independent State,,,Saint John's,XCD,Dollar,-267,AG,ATG,28,.ag
+7,Argentina,Argentine Republic,Independent State,,,Buenos Aires,ARS,Peso,54,AR,ARG,32,.ar
+8,Armenia,Republic of Armenia,Independent State,,,Yerevan,AMD,Dram,374,AM,ARM,51,.am
+9,Australia,Commonwealth of Australia,Independent State,,,Canberra,AUD,Dollar,61,AU,AUS,36,.au
+10,Austria,Republic of Austria,Independent State,,,Vienna,EUR,Euro,43,AT,AUT,40,.at
+11,Azerbaijan,Republic of Azerbaijan,Independent State,,,Baku,AZN,Manat,994,AZ,AZE,31,.az
+12,Bahamas,Commonwealth of The Bahamas,Independent State,,,Nassau,BSD,Dollar,-241,BS,BHS,44,.bs
+13,Bahrain,Kingdom of Bahrain,Independent State,,,Manama,BHD,Dinar,973,BH,BHR,48,.bh
+14,Bangladesh,People's Republic of Bangladesh,Independent State,,,Dhaka,BDT,Taka,880,BD,BGD,50,.bd
+15,Barbados,,Independent State,,,Bridgetown,BBD,Dollar,-245,BB,BRB,52,.bb
+16,Belarus,Republic of Belarus,Independent State,,,Minsk,BYR,Ruble,375,BY,BLR,112,.by
+17,Belgium,Kingdom of Belgium,Independent State,,,Brussels,EUR,Euro,32,BE,BEL,56,.be
+18,Belize,,Independent State,,,Belmopan,BZD,Dollar,501,BZ,BLZ,84,.bz
+19,Benin,Republic of Benin,Independent State,,,Porto-Novo,XOF,Franc,229,BJ,BEN,204,.bj
+20,Bhutan,Kingdom of Bhutan,Independent State,,,Thimphu,BTN,Ngultrum,975,BT,BTN,64,.bt
+21,Bolivia,Republic of Bolivia,Independent State,,,La Paz (administrative/legislative) and Sucre (judical),BOB,Boliviano,591,BO,BOL,68,.bo

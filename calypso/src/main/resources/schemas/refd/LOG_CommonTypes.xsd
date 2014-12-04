@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="urn:flowid.com:refd:v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:flowid.com:refd:v1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="CommonTypes.xsd"/>
+    <xs:complexType name="LogEntryType">
+        <xs:sequence>
+            <xs:element name="Param" type="Param" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="LogId" type="xs:int"/>
+        <xs:attribute name="Code" type="xs:string"/>
+        <xs:attribute name="Message" type="xs:string"/>
+        <xs:attribute name="AppCd" type="xs:string"/>
+        <xs:attribute name="AppId" type="xs:string"/>
+        <xs:attribute name="Operation" type="xs:string"/>
+        <xs:attribute name="OriginAppCd" type="xs:string"/>
+        <xs:attribute name="OriginAppId" type="xs:string"/>
+        <xs:attribute name="OriginOperation" type="xs:string"/>
+        <xs:attribute name="EntityType" type="xs:string"/>
+        <xs:attribute name="EntityId" type="xs:string"/>
+        <xs:attribute name="WorkflowStep" type="xs:string"/>
+        <xs:attribute name="Severity" type="xs:int"/>
+        <xs:attribute name="CreatedDttm" type="xs:dateTime"/>
+        <xs:anyAttribute namespace="##any" processContents="lax"/>
+    </xs:complexType>
+    <xs:element name="LogEntry" type="LogEntryType"/>
+</xs:schema>

@@ -1,0 +1,25 @@
+<jaxb:bindings
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    xmlns:annox="http://annox.dev.java.net"
+    jaxb:extensionBindingPrefixes="annox"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb bindingschema_2_0.xsd"
+    version="2.1">
+
+     <jaxb:globalBindings generateElementProperty="false">
+        <xjc:simple/>
+        <jaxb:serializable uid="1"/>
+        <jaxb:javaType name="org.joda.time.DateTime" xmlType="xs:date"
+            parseMethod="com.flowid.refd.util.DataTypeAdapter.parseDate"
+            printMethod="com.flowid.refd.util.DataTypeAdapter.printDate" />
+        <jaxb:javaType name="org.joda.time.DateTime" xmlType="xs:dateTime"
+            parseMethod="com.flowid.refd.util.DataTypeAdapter.parseDateTime"
+            printMethod="com.flowid.refd.util.DataTypeAdapter.printDateTime" />
+        <jaxb:javaType name="java.lang.String" xmlType="xs:string"
+            parseMethod="com.flowid.refd.util.DataTypeAdapter.parseString"
+            printMethod="com.flowid.refd.util.DataTypeAdapter.printString" />
+    </jaxb:globalBindings>
+
+</jaxb:bindings>

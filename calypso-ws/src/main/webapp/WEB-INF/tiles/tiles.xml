@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+
+    <definition name="base2" template="/WEB-INF/views/common/template2.jsp">
+        <put-attribute name="title" value="cSWO UI" />
+        <put-attribute name="style" value="/WEB-INF/views/common/style.jsp" />
+        <put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+        <put-attribute name="sidebar" value="/WEB-INF/views/common/sidebar.jsp" />
+        <put-attribute name="right-col" value="/WEB-INF/views/common/blank.jsp" />
+        <put-attribute name="script" value="/WEB-INF/views/common/script.jsp" />
+    </definition>
+
+    <definition name="not.supported" extends="base2">
+        <put-attribute name="right-col" value="/WEB-INF/views/common/notSupported.jsp" />
+    </definition>
+
+    <definition name="base2.londinium" template="/WEB-INF/views/common/template2.jsp">
+        <put-attribute name="title" value="cSWO UI" />
+        <put-attribute name="style" value="/WEB-INF/views/ld/style.jsp" />
+        <put-attribute name="header" value="/WEB-INF/views/ld/header.jsp" />
+        <put-attribute name="sidebar" value="/WEB-INF/views/ld/sidebar.jsp" />
+        <put-attribute name="right-col" value="/WEB-INF/views/common/blank.jsp" />
+        <put-attribute name="script" value="/WEB-INF/views/ld/script.jsp" />
+    </definition>
+
+    <!-- countries-ld -->
+    <definition name="countries-ld" extends="base2.londinium">
+        <put-attribute name="right-col" value="/WEB-INF/views/country/ld/countryPageContent.jsp" />
+        <put-attribute name="script" value="/WEB-INF/views/country/ld/countryScripts.jsp" />
+    </definition>
+
+    <definition name="base2.sbadmin" template="/WEB-INF/views/common/template2.jsp">
+        <put-attribute name="title" value="cSWO UI" />
+        <put-attribute name="style" value="/WEB-INF/views/sb/style.jsp" />
+        <put-attribute name="header" value="/WEB-INF/views/sb/header.jsp" />
+        <put-attribute name="sidebar" value="/WEB-INF/views/sb/sidebar.jsp" />
+        <put-attribute name="right-col" value="/WEB-INF/views/common/blank.jsp" />
+        <put-attribute name="script" value="/WEB-INF/views/sb/script.jsp" />
+    </definition>
+
+    <!-- countries-sb -->
+    <definition name="countries-sb" extends="base2.sbadmin">
+        <put-attribute name="right-col" value="/WEB-INF/views/country/sb/countryPageContent.jsp" />
+        <put-attribute name="script" value="/WEB-INF/views/country/sb/countryScripts.jsp" />
+    </definition>
+
+    <!-- countries -->
+    <definition name="countries" extends="countries-sb">
+    </definition>
+
+</tiles-definitions>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <title>Calypso - SB - Static</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="jslib/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="jslib/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="jslib/css/datatables.bootstrap.css" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link href="jslib/css/sb-admin-2.css" rel="stylesheet">
+    <link href="css/sb-admin-2-extra.css" rel="stylesheet" type="text/css">
+
+
+</head>
+
+<body>
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Calypso - SB Admin</a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <ul class="nav navbar-top-links navbar-right">
+        <!-- Room here for the User information -->
+    </ul>
+<!-- /.navbar-top-links -->
+</nav>
+    <div class="navbar-default sidebar" style="margin-top: 0">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="active">
+                    <a href="#"><i class="fa fa-file-text fa-fw"></i>Reference Data<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="active" href="#">Countries</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+
+<!-- /.navbar-static-side -->
+
+<!-- Page content -->
+<div id="page-wrapper">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Countries</h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /page header -->
+
+    <div class="row">
+        <!-- Users Table -->
+        <div id="entity-list-panel" class="panel col-lg-12">
+            <div class="col-lg-9">
+                <div class="panel-body">
+                    <div class="alert alert-danger fade in block-inner" hidden="true">
+                        <div class="message">...</div>
+                    </div>
+                    <div class="entity-list-container">
+                        <table class="table">
+                            <thead></thead>
+                            <tfoot></tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./table -->
+
+    <!-- Basic inputs -->
+    <div id="entity-form-panel" class="panel col-lg-9" hidden="true">
+        <div class="panel-heading"><h4><i class="icon-pencil"></i> Country</h4></div>
+        <div class="panel-body">
+            <div class="alert alert-danger fade in block-inner">
+                <div class="message">...</div>
+            </div>
+            <form class="form-horizontal" role="form" action="#">
+                <div id="entity-form-input">
+                </div>
+                <div class="form-actions text-left">
+                    <button type="button" class="btn btn-default action-add">Add
+                    </button>
+                    <button type="button" class="btn btn-default action-save">Save</button>
+                    <button type="button" class="btn btn-default action-delete">Delete</button>
+                    <button type="button" class="btn btn-default action-cancel">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="country-form-input" hidden="true">
+        <div class="form-group">
+            <label class="col-sm-2 control-label id">Code: </label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="code">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Name: </label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name">
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Form -->
+    <div id="entity-upload-form-panel" class="panel col-lg-9" hidden="true" action="#">
+        <div class="panel-heading"></div>
+        <div class="panel-body">
+            <div class="alert alert-danger fade in block-inner">
+                <div class="message">...</div>
+            </div>
+            <form class="form-horizontal" role="form" action="#">
+                <div class="form-group">
+                    <input type="file">
+                </div>
+                <div>
+                    <button type="button" class="btn btn-default action-upload"> Upload</button>
+                    <button type="button" class="btn btn-default action-cancel"> Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- /page content -->
+
+<script src="jslib/js/jquery.js"></script>
+<script type="text/javascript" src="jslib/js/jquery.uniform.min.js"></script>
+<script src="jslib/js/datatables.min.js"></script>
+<script src="jslib/js/datatables.bootstrap.js"></script>
+<script src="jslib/js/bootstrap.min.js"></script>
+<script src="jslib/js/metisMenu.js"></script>
+<script type="text/javascript" src="jslib/js/tabletools.js"></script>
+<script src="jslib/js/sb-admin-2.js"></script>
+
+
+<script type="text/javascript" src="js/global.js"></script>
+<script type="text/javascript" src="ts/SbAdminTheme.js"></script>
+<script type="text/javascript" src="ts/GEntity.js"></script>
+<script type="text/javascript" src="ts/GRepository.js"></script>
+<script type="text/javascript" src="ts/EntityEditor.js"></script>
+<script type="text/javascript" src="ts/Country.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+                SbAdminTheme.init();
+                // LondiniumTheme.init();
+                var url = "http://localhost:8380/ref-data-ws/rs/countries";
+                var ajaxCountryRepository = new Country.AjaxCountryRepository(url);
+                var countriesUI = new EntityEditor.EntityEditorUI(new Country.CountryMetadata(), ajaxCountryRepository);
+            }
+    );
+</script>
+</body>
+
+
+</html>

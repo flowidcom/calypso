@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <title>Countries-LD-Static</title>
+
+    <link href="jslib/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="jslib/css/londinium-theme.css" rel="stylesheet" type="text/css">
+    <link href="jslib/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="jslib/css/icons.css" rel="stylesheet" type="text/css">
+    <link href="css/londinium-extra.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=latin,cyrillic-ext"
+          rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Calypso</a>
+        <a class="sidebar-toggle"><i class="icon-paragraph-justify2"></i></a>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-icons">
+            <span class="sr-only">Toggle navbar</span>
+            <i class="icon-grid3"></i>
+        </button>
+        <button type="button" class="navbar-toggle offcanvas">
+            <span class="sr-only">Toggle navigation</span>
+            <i class="icon-paragraph-justify2"></i>
+        </button>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right collapse" id="navbar-icons">
+        <li class="user dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+                <span>John Smith</span>
+                <i class="caret"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right icons-right">
+                <li><a href="#"><i class="icon-user"></i> Profile</a></li>
+                <li><a href="#"><i class="icon-exit"></i> Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!-- /navbar -->
+
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-content">
+
+            <!-- Main navigation -->
+            <ul class="navigation">
+                <li>
+                    <a href="#"><span>Reference Data</span> <i class="icon-paragraph-justify2"></i></a>
+                    <ul>
+                        <li id="nav.countries" class="active"><a href="#">Countries</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><span>Content Management</span> <i class="icon-paragraph-justify2"></i></a>
+                    <ul>
+                        <li id="nav.articles"><a href="#">Articles</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /main navigation -->
+
+        </div>
+    </div>
+    <!-- /sidebar -->
+
+
+    <!-- Page content -->
+    <div class="page-content">
+
+
+        <!-- Page header -->
+        <div class="page-header">
+            <div class="page-title">
+                <h3>Countries</h3>
+            </div>
+
+        </div>
+        <!-- /page header -->
+
+        <!-- Users Table -->
+        <div id="entity-list-panel" class="panel col-lg-12">
+            <div class="col-lg-9">
+                <div class="panel-heading"></div>
+                <div class="panel-body">
+                    <div class="alert alert-danger fade in block-inner" hidden="true">
+                        <div class="message">...</div>
+                    </div>
+                    <div class="entity-list-container">
+                        <table class="table">
+                            <thead></thead>
+                            <tfoot></tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Basic inputs -->
+        <div id="entity-form-panel" class="panel col-lg-9" hidden="true">
+            <div class="panel-heading"><h6><i class="icon-pencil"></i> Country</h6></div>
+            <div class="panel-body">
+                <div class="alert alert-danger fade in block-inner">
+                    <div class="message">...</div>
+                </div>
+                <form class="form-horizontal" role="form" action="#">
+                    <div id="entity-form-input">
+                    </div>
+                    <div class="form-actions text-left">
+                        <button type="button" class="btn btn-default action-add">Add
+                        </button>
+                        <button type="button" class="btn btn-default action-save">Save</button>
+                        <button type="button" class="btn btn-default action-delete">Delete</button>
+                        <button type="button" class="btn btn-default action-cancel">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="country-form-input" hidden="true">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Code: </label>
+
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="code">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Name: </label>
+
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name">
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload Form -->
+        <div id="entity-upload-form-panel" class="panel col-lg-9" hidden="true" action="#">
+            <div class="panel-heading"></div>
+            <div class="panel-body">
+                <div class="alert alert-danger fade in block-inner">
+                    <div class="message">...</div>
+                </div>
+                <form class="form-horizontal" role="form" action="#">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">File: </label>
+
+                        <div class="col-sm-11">
+                            <input type="file" class="styled">
+                        </div>
+                    </div>
+                    <div class="form-actions text-left">
+                        <button type="button" class="btn btn-default action-upload"><i class="icon-upload"></i>Upload
+                        </button>
+                        <button type="button" class="btn btn-default action-cancel"> Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /page content -->
+
+
+</div>
+<!-- /page container -->
+
+<script type="text/javascript" src="jslib/js/jquery.js"></script>
+<script type="text/javascript" src="jslib/js/jquery-ui.js"></script>
+<script type="text/javascript" src="jslib/js/jquery.uniform.min.js"></script>
+<script type="text/javascript" src="jslib/js/select2.js"></script>
+<script type="text/javascript" src="jslib/js/datatables.js"></script>
+<script type="text/javascript" src="jslib/js/tabletools.js"></script>
+<script type="text/javascript" src="jslib/js/bootstrap.js"></script>
+
+<script type="text/javascript" src="js/global.js"></script>
+<script type="text/javascript" src="ts/LondiniumTheme.js"></script>
+<script type="text/javascript" src="ts/GEntity.js"></script>
+<script type="text/javascript" src="ts/GRepository.js"></script>
+<script type="text/javascript" src="ts/EntityEditor.js"></script>
+<script type="text/javascript" src="ts/Country.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+                LondiniumTheme.init();
+                var url = "http://localhost:8380/ref-data-ws/rs/countries";
+                var ajaxCountryRepository = new Country.AjaxCountryRepository(url);
+                var countriesUI = new EntityEditor.EntityEditorUI(new Country.CountryMetadata(), ajaxCountryRepository);
+            }
+    );
+</script>
+</body>
+
+
+</html>

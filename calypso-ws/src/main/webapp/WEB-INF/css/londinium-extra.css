@@ -1,0 +1,19 @@
+.table > tbody > tr:hover > td,
+.table > tbody > tr:hover > th {
+    background-color: #dfdfdf;
+}
+
+.DTTT_container2 {
+    position: relative;
+    float: left;
+    margin: 16px 14px 16px 10px;
+}
+
+.select2-hidden-accessible {
+    display: none;
+}
+
+.action-column {
+    text-align: center;
+}
+

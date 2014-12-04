@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <property scope="context" name="logDir" value="." />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%-5level %logger{12} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.flowid" level="DEBUG" />
+    <logger name="org.springframework" level="ERROR" />
+    <logger name="org.apache.cxf" level="ERROR" />
+    
+    <root level="ERROR">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

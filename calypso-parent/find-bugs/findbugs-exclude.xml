@@ -1,0 +1,19 @@
+<FindBugsFilter>
+    <Match>
+        <Package name="~com\.flowid\.refd\.v1" />
+    </Match>
+    <Match>
+        <!-- Catches generic Exception to handle RuntimeExceptions -->
+        <Bug pattern="REC_CATCH_EXCEPTION" />
+    </Match>
+    <Match>
+        <Or>
+            <Package name="~.*JTest.*" />
+            <Package name="~.*JIntTest.*" />
+            <Package name="~.*MTest.*" />
+            
+        </Or>
+        <!-- Test classes ignore return from mkdir/mkdirs/delete -->
+        <Bug pattern="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE" />
+    </Match>
+</FindBugsFilter>

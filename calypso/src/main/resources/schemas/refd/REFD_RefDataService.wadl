@@ -1,0 +1,59 @@
+<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:refd="urn:flowid.com:refd:v1">
+    <doc title="Reference Data Management" />
+    <grammars>
+        <include href="Country.xsd" />
+    </grammars>
+    <resources base="http://localhost:8380/data-upload-ws/rs/" xmlns:refd="urn:flowid.com:refd:v1">
+        <resource path="/countries">
+            <resource path="/">
+                <method name="GET">
+                    <doc>Return a country based on ISO code.</doc>
+                    <request />
+                    <response status="200">
+                        <representation mediaType="application/json" element="refd:GPagedList" />
+                    </response>
+                </method>
+                <method name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="refd:Country" />
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="refd:Country" />
+                    </response>
+                </method>
+            </resource>
+            <resource path="/{cd}">
+                <param name="cd" style="template" type="xs:string" />
+                <method name="GET">
+                    <doc>Return a country based on ISO code.</doc>
+                    <request />
+                    <response status="200">
+                        <representation mediaType="application/json" element="refd:Country" />
+                    </response>
+                </method>
+                <method name="POST">
+                    <request>
+                        <representation mediaType="application/json" element="refd:Country" />
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="refd:Country" />
+                    </response>
+                </method>
+            </resource>
+            <resource path="/action/upload">
+                <method name="POST">
+                    <request>
+                        <representation mediaType="multipart/octet-stream">
+                            <part name="data" type="xs:any" />
+                        </representation>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json" element="refd:Country" />
+                        <representation mediaType="application/xml" element="refd:GError" />
+                    </response>
+                </method>
+            </resource>
+        </resource>
+    </resources>
+</application>
