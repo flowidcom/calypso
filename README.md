@@ -1,8 +1,8 @@
 # Calypso
 
-Calypso is fun project that started with the idea that part of craftsmanship is to build an assorted set of tools and techniques that lets a person build quickly new beautiful things.
+Calypso started from the idea that part of the programming craft is building an assorted set of tools and techniques that will assist in quickly developing complex/powerful applications.
 
-Here are some of the ideas shown in this project:
+Some of the ideas shown in this project:
 
 * Schema-first development of web-services - check calypso/src/main/resources/schemas for a set of schemas used in the application. These schemas are used to generate Java code using the CXF framework and the wsdl2java maven plugin. We also generate the REST service skeletons with the wadl2java plugin. See the mvn profile wadl in calypso-ws/pom.xml
 
@@ -16,8 +16,8 @@ Here are some of the ideas shown in this project:
 
 * Unit testing with JUnit plus some extensions to make regression testing simpler and support integration testing. Check calypso/src/test/java/**/JTest... .
 
- * Find bugs with ... findbugs. See calypso-parent/find-bugs and the mvn-profile findbugs in calypso-parent/pom.xml file.
+* Find bugs with ... findbugs. See calypso-parent/find-bugs and the mvn-profile findbugs in calypso-parent/pom.xml file.
  
- * Testing coverage with emma. See the mvn-profile emma in calypso-parent/pom.xml
+* Testing coverage with emma. See the mvn-profile emma in calypso-parent/pom.xml
  
 ... and many other neat tools and configurations.

@@ -8,7 +8,7 @@ import org.joda.time.format.ISODateTimeFormat;
 
 /**
  * Class used in the JAXB unmarshalling to transform empty strings in nulls and trim the white
- * spaces at the end.
+ * spaces at the end. It also converts dates to Joda Date-Time.
  */
 public class DataTypeAdapter {
     private static final String XML_DATE_FORMAT = "YYYY-MM-dd";

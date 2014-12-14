@@ -170,7 +170,7 @@
                                     <extraarg>-xjc-Xannotate</extraarg>
                                 </extraargs>
                                 <bindingFiles>
-                                    <bindingFile>src/main/resources/bindings/JAXB.xml</bindingFile>
+                                    <bindingFile>src/main/resources/bindings/refd.jaxb.xml</bindingFile>
                                 </bindingFiles>
                             </defaultOptions>
                             <wsdlOptions>
@@ -216,7 +216,7 @@
                     <includeConfigurationDirectoryInClasspath>false</includeConfigurationDirectoryInClasspath>
                     <programs>
                         <program>
-                            <mainClass>${project.groupId}.${project.artifactId}.shell.JShell</mainClass>
+                            <mainClass>${project.groupId}.shell.JShell</mainClass>
                             <name>${project.name}</name>
                             <platforms>
                                 <platform>windows</platform>

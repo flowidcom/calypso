@@ -1,4 +1,4 @@
-package com.flowid.refd.shell;
+package com.flowid.shell;
 
 /*
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
@@ -41,58 +41,66 @@ public class JShell {
     private static final Logger logger = LoggerFactory.getLogger(JShell.class);
 
     // The following are regular name characters. They appear in option names and property names
-    static final String NAME_CHAR = "[a-z]|[A-Z]|[0-9]|_|\\.|\\-";
+    private static final String NAME_CHAR = "[a-z]|[A-Z]|[0-9]|_|\\.|\\-";
+    // Values of the properties can be any character
+    private static final String VALUE_CHAR = ".";
     // Option names for options with no arguments start with upper case or digits
-    static final String OPTION_NAME_NO_ARG_REGEX = "[A-Z0-9](" + NAME_CHAR + ")*";
+    private static final String OPTION_NAME_NO_ARG_REGEX = "[A-Z0-9](" + NAME_CHAR + ")*";
     // Option names for options with arguments start with lower case
-    static final String OPTION_NAME_WITH_ARG_REGEX = "[a-z](" + NAME_CHAR + ")*";
+    private static final String OPTION_NAME_WITH_ARG_REGEX = "[a-z](" + NAME_CHAR + ")*";
     // Properties have name=value definitions. There are FOUR groups in this definition.
     // The name is in group 1 and the value in the group 3!
-    static final String PROP_DEF_REGEX = "((" + NAME_CHAR + ")+)=((" + NAME_CHAR + ")+)";
-    static final String COMMAND_NAME_REGEX = "\\w+";
+    private static final String PROP_DEF_REGEX = "((" + NAME_CHAR + ")+)=((" + VALUE_CHAR + ")+)";
+    private static final String COMMAND_NAME_REGEX = "\\w+";
 
     // Precompiled patterns
-    static final Pattern OPTION_NAME_NO_ARG_PATTERN = Pattern.compile("-"
-            + OPTION_NAME_NO_ARG_REGEX);
-    static final Pattern OPTION_NAME_WITH_ARG_PATTERN = Pattern.compile("-"
-            + OPTION_NAME_WITH_ARG_REGEX);
-    static final Pattern PROP_DEF_PATTERN = Pattern.compile("-D" + PROP_DEF_REGEX);
-    static final Pattern COMMAND_NAME_PATTERN = Pattern.compile(COMMAND_NAME_REGEX);
+    private static final Pattern OPTION_NAME_NO_ARG_PATTERN = Pattern.compile("-" + OPTION_NAME_NO_ARG_REGEX);
+    private static final Pattern OPTION_NAME_WITH_ARG_PATTERN = Pattern.compile("-" + OPTION_NAME_WITH_ARG_REGEX);
+    private static final Pattern PROP_DEF_PATTERN = Pattern.compile("-D" + PROP_DEF_REGEX);
 
-    // Methods that accept a list of arguments (no options)
+    // this is the list of objects that execute the commands
     HashMap<String, Object> cmdObjects = new HashMap<String, Object>();
+    // these are the methods that are executed for a specific command
     HashMap<String, Method> cmdMethods = new HashMap<String, Method>();
 
     // code state used in the automata for indicating an error
     private static final int ERROR_STATE = 999;
 
     /**
-     * Iterate on the methods directly from this class and add the methods the implement the
-     * signature int cmd(String ... args) or int cmd(HashMap options, String ... args)
+     * Iterate on the methods that implement the Command interface
      * 
      * @param clasz
      */
-    public void addCommandsFrom(Class<?> clasz) {
-        boolean isInternalCommand = (clasz == this.getClass());
+    public void addCommandsFromClass(Class<?> clasz) {
+        logger.debug("Adding commands from the class: {}", clasz);
         try {
-            for (Method method : clasz.getDeclaredMethods()) {
+            Object o = clasz.newInstance();
+            addCommandsFrom(o);
+        } catch (Exception e) {
+            logger.error("Exception creating commands for class: {} - {}", clasz.getName(), e);
+            logger.debug("Details: ", e);
+        }
+    }
+
+    public void addCommandsFrom(Object o) {
+        logger.debug("Adding commands from the class: {}", o.getClass());
+        try {
+            for (Method method : o.getClass().getMethods()) {
                 String cmdName = getCommandName(method);
                 if (cmdName != null) {
                     Method existingMethod = cmdMethods.get(cmdName);
                     if (existingMethod != null) {
                         logger.error("A command with the name {} is already defined in class {}",
-                                cmdName, existingMethod.getClass());
+                                     cmdName, existingMethod.getClass());
                     } else {
+                        logger.debug("Added command {} from method {}", cmdName, method.getName());
                         cmdMethods.put(cmdName, method);
-                        // for internal commands, set the command object
-                        if (isInternalCommand) {
-                            cmdObjects.put(cmdName, this);
-                        }
+                        cmdObjects.put(cmdName, this);
                     }
                 }
             }
         } catch (Exception e) {
-            logger.error("Exception creating commands for class: {} - {}", clasz.getName(), e);
+            logger.error("Exception creating commands for class: {} - {}", o.getClass().getName(), e);
             logger.debug("Details: ", e);
         }
     }
@@ -153,7 +161,7 @@ public class JShell {
      * 
      * @param pkg
      */
-    public void addCommandsFrom(Package pkg) {
+    public void addCommandsFromPackage(Package pkg) {
         final ClassLoader cld = Thread.currentThread().getContextClassLoader();
         try {
             Enumeration<URL> resources = cld.getResources(pkg.getName().replace('.', '/'));
@@ -187,6 +195,7 @@ public class JShell {
      * @return 0 - success, >0 - error
      */
     private int execute(String command, HashMap<String, String> options, List<String> args) {
+        this.setAppLoggingLevel();
         Method cmdMethod = cmdMethods.get(command);
         if (cmdMethod == null) {
             // no implementation found for the command
@@ -439,10 +448,10 @@ public class JShell {
                 System.out.println(String.format("%s - %s#%s", cmdName, cmdClass, methodName));
             } else if (paramsCount == 1) {
                 System.out.println(String
-                        .format("%s <args> - %s#%s", cmdName, cmdClass, methodName));
+                    .format("%s <args> - %s#%s", cmdName, cmdClass, methodName));
             } else if (paramsCount == 2) {
                 System.out.println(String.format("%s <options> <args> - %s#%s", cmdName, cmdClass,
-                        methodName));
+                                                 methodName));
             } else {
                 throw new IllegalArgumentException(
                         "Command associated with a method with more than 2 parameters.");
@@ -452,30 +461,15 @@ public class JShell {
         return 0;
     }
 
-    @Command(name = "logLevel")
+    @Command(name = "loggers")
     public int setLogLevel(String... args) {
-        String name = "com.flowid";
-
-        final LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
-        ch.qos.logback.classic.Logger log = lc.getLogger(name);
-        if (log == null) {
-            logger.error("Could not find a logger wit the name " + name);
-            return 1;
-        }
-
         if (args.length == 0) {
-            System.out.println("Log level: " + log.getLevel().toString());
-        } else if (args.length == 1) {
-            String level = args[0].toUpperCase();
-            Level l = Level.valueOf(level);
-            if (l == null) {
-                logger.error("IParamalid log level " + level);
-                return 1;
+            final LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+            for (ch.qos.logback.classic.Logger log : lc.getLoggerList()) {
+                if (log.getLevel() != null) {
+                    System.out.println(log.getName() + ":" + log.getLevel());
+                }
             }
-            log.setLevel(l);
-            System.out.println("Log level set to " + l);
-        } else {
-            throw new IllegalArgumentException("Invalid number of parameters - " + args.length);
         }
         return 0;
     }
@@ -491,8 +485,27 @@ public class JShell {
 
     static public void main(String... args) {
         JShell shell = new JShell();
-        shell.addCommandsFrom(JShell.class.getPackage());
+        // add the internal commands
+        shell.addCommandsFrom(shell);
         shell.execute(args);
+    }
+
+    static void setLoggingLevel(String loggerAsString, Level level) {
+        ch.qos.logback.classic.Logger l = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("com.flowid");
+        l.setLevel(level);
+    }
+
+    protected void setAppLoggingLevel() {
+        String debugLevel = System.getProperty("app.logging.level");
+        if (debugLevel != null) {
+            logger.debug("Setting log level to " + debugLevel);
+        }
+        if ("DEBUG".equals(debugLevel))
+        {
+            setLoggingLevel("com.flowid", Level.DEBUG);
+            setLoggingLevel("org.springframework", Level.INFO);
+            setLoggingLevel("org.apache.cxf", Level.INFO);
+        }
     }
 
     static public void assertTrue(boolean condition, String message) throws Exception {

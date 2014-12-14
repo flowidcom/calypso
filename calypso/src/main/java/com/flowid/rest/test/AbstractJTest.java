@@ -11,7 +11,7 @@ import org.joda.time.DateTimeZone;
  * Shared functionality for testing based on data files.
  */
 public abstract class AbstractJTest {
-    private static final String AMERICAN_CHICAGO = "America/New York";
+    private static final String TEST_TIME_ZONE = "America/New York";
     protected static final String APP_CONFIG_DIR = "app.config.dir";
 
     static protected final File inDir = new File("src/test/data/in");
@@ -25,8 +25,8 @@ public abstract class AbstractJTest {
         if (System.getProperty(APP_CONFIG_DIR) == null) {
             System.setProperty(APP_CONFIG_DIR, appConfigDir.getPath());
         }
-        TimeZone.setDefault(TimeZone.getTimeZone(AMERICAN_CHICAGO));
-        DateTimeZone.setDefault(DateTimeZone.forID(AMERICAN_CHICAGO));
+        TimeZone.setDefault(TimeZone.getTimeZone(TEST_TIME_ZONE));
+        DateTimeZone.setDefault(DateTimeZone.forID(TEST_TIME_ZONE));
     }
 
     static protected void setUp(String newOutDir) {

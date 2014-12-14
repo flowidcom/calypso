@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns="urn:flowid.com:refd:v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:flowid.com:refd:v1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns="urn:flowid.com:refd:v1" 
+   xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+   targetNamespace="urn:flowid.com:refd:v1" elementFormDefault="qualified" attributeFormDefault="unqualified">
     <xs:complexType name="GMessage">
         <xs:sequence>
             <xs:element name="Message" type="xs:string" minOccurs="0"/>

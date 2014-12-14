@@ -2,6 +2,9 @@ package com.flowid.refd.domain;
 
 import com.flowid.refd.v1.GError;
 
+/**
+ * This is a generic exception returned by the application.
+ */
 public class GException extends RuntimeException {
     private static final long serialVersionUID = 1L;
     private int code = 1000;

@@ -1,3 +1,5 @@
+package com.flowid.shell;
+
 /*
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -9,54 +11,55 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.flowid.refd.shell;
 
 import java.io.File;
 import java.util.HashMap;
 
-public class ParamsUtil {
+/**
+ * A fluent API to validate shell parameters.
+ */
+public class ParamsValidator {
     // arguments that are validated
     private String[] args;
 
-    // options
-    HashMap<String, String> options;
+    // options that are validated
+    private HashMap<String, String> options;
 
     // to allow validation of individual arguments, this is the index of the argument
     private int argIndex = -1;
-    private String option = "";
 
-    static public ParamsUtil validate(String[] args) {
-        ParamsUtil pu = new ParamsUtil();
+    /**
+     * Initialize the validator passing a list of arguments
+     * 
+     * @param args
+     * @return
+     */
+    static public ParamsValidator validate(String[] args) {
+        ParamsValidator pu = new ParamsValidator();
         pu.args = args;
         return pu;
     }
 
-    static public ParamsUtil validate(HashMap<String, String> options) {
-        ParamsUtil pu = new ParamsUtil();
+    /**
+     * Initialize the validator passing a list of options
+     * 
+     * @param options
+     * @return
+     */
+    static public ParamsValidator validate(HashMap<String, String> options) {
+        ParamsValidator pu = new ParamsValidator();
         pu.options = options;
         return pu;
     }
 
     /**
-     * Set the current argument to validate
+     * Validate that an option is present
      * 
-     * @param i index of the argument to validate
+     * @param option
      * @return
-     * @throws IllegalArgumentException
      */
-    public ParamsUtil arg(int i) {
-        argIndex = i;
-        getCurrentArg(); // validate the index
-        return this;
-    }
-
-    public ParamsUtil option(String o) {
-        option = o;
-        return this;
-    }
-
-    public ParamsUtil mandatory() {
-        String val = options.get(option);
+    public ParamsValidator mandatory(String option) {
+        String val = getOption(option);
         if (val == null) {
             throw new IllegalArgumentException("Missing required option " + option);
         }
@@ -70,7 +73,7 @@ public class ParamsUtil {
      * @return
      * @throws IllegalArgumentException
      */
-    public ParamsUtil atLeast(int n) throws IllegalArgumentException {
+    public ParamsValidator atLeast(int n) throws IllegalArgumentException {
         if (args.length < n) {
             throw new IllegalArgumentException("Expected at least " + n + " arguments");
         }
@@ -84,7 +87,7 @@ public class ParamsUtil {
      * @return
      * @throws IllegalArgumentException
      */
-    public ParamsUtil exactly(int n) throws IllegalArgumentException {
+    public ParamsValidator exactly(int n) throws IllegalArgumentException {
         if (args.length != n) {
             throw new IllegalArgumentException("Expected exactly " + n + " arguments");
         }
@@ -97,7 +100,7 @@ public class ParamsUtil {
      * @return
      * @throws IllegalArgumentException
      */
-    private String getCurrentArg() {
+    private String arg(int i) {
         if (argIndex < 0) {
             throw new IllegalArgumentException("Argument to check not set.");
         }
@@ -108,17 +111,17 @@ public class ParamsUtil {
     }
 
     /**
-     * Check that the current argument is a file
+     * Check that the argument at index i is a file
      * 
      * @return
      * @throws IllegalArgumentException
      */
-    public ParamsUtil isFile() {
-        String arg = getCurrentArg();
+    public ParamsValidator isFile(int i) {
+        String arg = arg(i);
         File f = new File(arg);
         if (!f.isFile()) {
-            throw new IllegalArgumentException(String.format("Argument %s at index %d must be a file", arg,
-                    argIndex));
+            throw new IllegalArgumentException(
+                    String.format("Argument %s at index %d must be a file", arg, argIndex));
         }
         return this;
     }
@@ -126,12 +129,13 @@ public class ParamsUtil {
     /**
      * Check that the argument selected matches a regular expression
      * 
-     * @param regex
+     * @param index of the argument
+     * @param regular expression to check
      * @return
      * @throws IllegalArgumentException
      */
-    public ParamsUtil matches(String regex) {
-        String arg = getCurrentArg();
+    public ParamsValidator matches(int i, String regex) {
+        String arg = arg(i);
         if (!arg.matches(regex)) {
             throw new IllegalArgumentException("Parameter " + arg + " does not match expression " + regex);
         }

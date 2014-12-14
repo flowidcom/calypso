@@ -3,12 +3,21 @@ package com.flowid.rest.test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Generic integration test. Looks for sytem properties to find the environment to be used in
+ * running the test.
+ */
 public abstract class AbstractJIntTest extends AbstractJTest {
     private static final Logger logger = LoggerFactory.getLogger(AbstractJIntTest.class);
     private static final String APP_NAME = "calypso";
     private static final String APP_ENV = "app.env";
+
+    // predefined environments
     protected static final String ENV_LOCAL = "local";
+    protected static final String ENV_DEV = "dev";
     protected static final String ENV_QA = "qa";
+
+    // the default environment is "local" used by developers on their own machines
     private static final String DEFAULT_ENV = ENV_LOCAL;
 
     // runtime environment for this test
@@ -34,6 +43,7 @@ public abstract class AbstractJIntTest extends AbstractJTest {
 
 
         String appConfigDir = System.getProperty(APP_CONFIG_DIR);
+        // in a developer's environment, the configuration directory ../<app>-config/env
         if (appConfigDir == null) {
             appConfigDir = "../" + APP_NAME + "-config/env/" + env;
         }
@@ -50,5 +60,4 @@ public abstract class AbstractJIntTest extends AbstractJTest {
     static protected boolean inEnv(String runtimeEnv) {
         return env.equals(runtimeEnv);
     }
-
 }
