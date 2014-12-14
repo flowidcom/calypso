@@ -1,6 +1,6 @@
 # Calypso
 
-Calypso started from the idea that part of the programming craft is building an assorted set of tools and techniques that will assist in quickly developing complex/powerful applications.
+Calypso started from the idea that part of the programming craft is building an assorted set of tools and techniques that make easier to develop complex/powerful applications.
 
 Some of the ideas shown in this project:
 
