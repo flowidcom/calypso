@@ -14,7 +14,6 @@ package com.flowid.shell;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.function.Consumer;
 
 /**
  * A fluent API to validate shell parameters.
@@ -134,6 +133,15 @@ public class Params {
         return args[i];
     }
 
+    public File argAsFile(int i) {
+        String fileName = arg(i);
+        File f = new File(fileName);
+        if (!f.isFile()) {
+            throw new IllegalArgumentException("Argument " + i + " is not a file.");
+        }
+        return f;
+    }
+
     /**
      * Internal method to get the current argument. Checks that the index is correct.
      * 
@@ -144,27 +152,6 @@ public class Params {
         String val = arg(i);
         return val == null ? dvalue : val;
     }
-
-    /**
-     * Check that the argument at index i is a file
-     * 
-     * @return
-     * @throws IllegalArgumentException
-     */
-    public Params asFile(int i, Ref<File> hfile) {
-        atLeast(i + 1);
-        String arg = arg(i);
-        File f = new File(arg);
-        if (!f.isFile()) {
-            throw new IllegalArgumentException(
-                    String.format("Argument %s at index %d must be a file", arg, i));
-        }
-        if (hfile != null) {
-            hfile.set(f);
-        }
-        return this;
-    }
-
 
     /**
      * Copy the argument into a reference structure
@@ -178,20 +165,6 @@ public class Params {
         }
         return this;
     }
-
-    /**
-     * Call a function on the argument
-     * 
-     * @return
-     * @throws IllegalArgumentException
-     */
-    public Params apply(int i, Consumer<String> f) {
-        if (args != null && args.length > i) {
-            f.accept(args[i]);
-        }
-        return this;
-    }
-
 
     /**
      * Check that the argument selected matches a regular expression
@@ -221,7 +194,8 @@ public class Params {
 
 
     public String option(String o, String dval) {
-        return options.getOrDefault(o, dval);
+        String val = options.get(o);
+        return val == null ? dval : val;
     }
 
     public boolean hasOption(String o) {

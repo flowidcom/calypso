@@ -29,6 +29,9 @@ import com.flowid.refd.v1.Country;
 import com.flowid.refd.v1.GList;
 import com.flowid.refd.v1.Upload;
 
+/**
+ * Rest resource that manages the reference data "Country"
+ */
 @Path("/countries")
 public class CountryResource {
     private static final Logger logger = LoggerFactory.getLogger(CountryResource.class);

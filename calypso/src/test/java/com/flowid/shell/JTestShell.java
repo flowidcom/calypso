@@ -41,11 +41,11 @@ public class JTestShell {
 
     @Test
     public void testIsFile() {
-        Ref<File> f = new Ref<>();
-        Params
+        Params params = Params
             .args(new String[] {"src/test/data/in/country-codes-1.csv"})
-            .asFile(0, f);
-        assertNotNull(f.get());
+            .atLeast(1);
+        File f = params.argAsFile(0);
+        assertNotNull(f);
     }
 
     /**
@@ -60,23 +60,6 @@ public class JTestShell {
             .copy(0, arg);
         assertEquals("a", arg.get());
     }
-
-
-    /**
-     * Another way to set local variables
-     */
-    @Test
-    public void testAsString2() {
-        Ref<String> arg = new Ref<>();
-        Params
-            .args(new String[] {"a"})
-            .atLeast(1)
-            .apply(0, a -> {
-                arg.set(a);
-            });
-        assertEquals("a", arg.get());
-    }
-
 
     /**
      * A third way to get an argument, no side-effects
