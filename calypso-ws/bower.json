@@ -13,6 +13,7 @@
     "dependencies": {
         "bootstrap": "~3.1.1",
         "jquery": "~1.11.1",
+        "dt": "git://github.com/borisyankov/DefinitelyTyped",
         "jquery-ui": "~1.11.1",
         "select2": "~3.4.6",
         "datatables": "~1.10.0",

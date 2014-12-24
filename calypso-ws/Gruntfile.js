@@ -14,7 +14,7 @@ module.exports = function (grunt) {
                 files: {
                     'js/jquery.js': 'jquery/dist/jquery.js',
                     'js/jquery.min.js': 'jquery/dist/jquery.min.js',
-                    'js/jquery.d.ts' : "dt-jquery/jquery.d.ts"
+                    'js/jquery.d.ts' : "dt/jquery/jquery.d.ts"
                 }
             },
             bootstrap: {
@@ -35,6 +35,7 @@ module.exports = function (grunt) {
                 files: {
                     'js/datatables.js': 'datatables/media/js/jquery.dataTables.js',
                     'js/datatables.min.js': 'datatables/media/js/jquery.dataTables.min.js',
+                    'js/jquery.dataTables.d.ts' : "dt/jquery.dataTables/jquery.dataTables.d.ts",
                     'css/datatables.css': 'datatables/media/css/jquery.dataTables.css'
                 }
             },
@@ -48,13 +49,14 @@ module.exports = function (grunt) {
                 files: {
                     "js/select2.js": "select2/select2.js",
                     "js/select2.min.js": "select2/select2.min.js",
+                    'js/select2.d.ts' : "dt/select2/select2.d.ts",
                     "css/select2.css": "select2/select2.css"
                 }
             },
             tabletools: {
                 files: {
                     "js/tabletools.js": "/tabletools/js/dataTables.tableTools.js",
-                    "css/tabletools.css": "dataTables.tableTools.css"
+                    "css/tabletools.css": "tabletools/css/dataTables.tableTools.css"
                 }
             },
             uniform: {

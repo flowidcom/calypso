@@ -6,9 +6,11 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Arrays;
 
+import javax.ws.rs.BadRequestException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -22,8 +24,6 @@ import org.apache.cxf.jaxrs.ext.multipart.MultipartBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.flowid.refd.domain.BadRequestException;
-import com.flowid.refd.domain.ResourceNotFoundException;
 import com.flowid.refd.store.GRepository;
 import com.flowid.refd.v1.Country;
 import com.flowid.refd.v1.GList;
@@ -85,11 +85,11 @@ public class CountryResource {
     @Path("/{cd}")
     public Country updateCountry(@PathParam("cd") String cd, Country country) {
         if (cd == null || !cd.equals(country.getCode())) {
-            throw new BadRequestException("Invalid key");
+            throw new BadRequestException();
         }
         Country c = repository.find(cd);
         if (c == null) {
-            throw new ResourceNotFoundException("Incorrect");
+            throw new NotFoundException();
         }
         return repository.save(country);
     }

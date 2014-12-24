@@ -1,8 +1,8 @@
-/// <reference path="../jslib/ts/jquery.d.ts" />
-/// <reference path="../jslib/ts/jquery.dataTables.d.ts" />
-/// <reference path="../jslib/ts/jquery.dataTables-1.10.d.ts" />
-/// <reference path="../jslib/ts/select2.d.ts" />
-/// <reference path="../jslib/ts/jquery.uniform.d.ts" />
+/// <reference path="../jslib/js/jquery.d.ts" />
+/// <reference path="../jslib/js/jquery.dataTables.d.ts" />
+/// <reference path="jquery.dataTables-1.10.d.ts" />
+/// <reference path="../jslib/js/select2.d.ts" />
+/// <reference path="jquery.uniform.d.ts" />
 /// <reference path="GEntity.ts" />
 /// <reference path="GRepository.ts" />
 

@@ -170,8 +170,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
                 SbAdminTheme.init();
-                // LondiniumTheme.init();
-                var url = "http://localhost:8380/ref-data-ws/rs/countries";
+                var url = "http://localhost:8380/calypso-ws/rs/countries";
                 var ajaxCountryRepository = new Country.AjaxCountryRepository(url);
                 var countriesUI = new EntityEditor.EntityEditorUI(new Country.CountryMetadata(), ajaxCountryRepository);
             }

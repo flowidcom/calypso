@@ -1,4 +1,4 @@
-/// <reference path="../jslib/ts/jquery.d.ts" />
+/// <reference path="../jslib/js/jquery.d.ts" />
 /// <reference path="GEntity.ts" />
 
 module GRepository {
@@ -187,4 +187,3 @@ module GRepository {
         }
     }
 }
-
