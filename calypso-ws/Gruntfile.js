@@ -12,85 +12,93 @@ module.exports = function (grunt) {
             },
             jquery: {
                 files: {
-                    'js/jquery.js': 'jquery/dist/jquery.js',
-                    'js/jquery.min.js': 'jquery/dist/jquery.min.js',
-                    'js/jquery.d.ts' : "dt/jquery/jquery.d.ts"
+                    'jquery/jquery.js': 'jquery/dist/jquery.js',
+                    'jquery/jquery.min.js': 'jquery/dist/jquery.min.js',
+                    'jquery/jquery.d.ts' : "dt/jquery/jquery.d.ts"
                 }
             },
             bootstrap: {
                 files: {
-                    'js/bootstrap.js': 'bootstrap/dist/js/bootstrap.js',
-                    'js/bootstrap.min.js': 'bootstrap/dist/js/bootstrap.min.js',
-                    'css/bootstrap.css': 'bootstrap/dist/css/bootstrap.css'
+                    'bootstrap/bootstrap.js': 'bootstrap/dist/js/bootstrap.js',
+                    'bootstrap/bootstrap.min.js': 'bootstrap/dist/js/bootstrap.min.js',
+                    'bootstrap/bootstrap.css': 'bootstrap/dist/css/bootstrap.css'
                 }
             },
             'jquery-ui': {
                 files: {
-                    'js/jquery-ui.js': 'jquery-ui/jquery-ui.js',
-                    'js/jquery-ui.min.js': 'jquery-ui/jquery-ui.min.js'
+                    'jquery-ui/jquery-ui.js': 'jquery-ui/jquery-ui.js',
+                    'jquery-ui/jquery-ui.min.js': 'jquery-ui/jquery-ui.min.js'
                 }
 
             },
             datatables: {
                 files: {
-                    'js/datatables.js': 'datatables/media/js/jquery.dataTables.js',
-                    'js/datatables.min.js': 'datatables/media/js/jquery.dataTables.min.js',
-                    'js/jquery.dataTables.d.ts' : "dt/jquery.dataTables/jquery.dataTables.d.ts",
-                    'css/datatables.css': 'datatables/media/css/jquery.dataTables.css'
+                    'datatables/datatables.js': 'datatables/media/js/jquery.dataTables.js',
+                    'datatables/datatables.min.js': 'datatables/media/js/jquery.dataTables.min.js',
+                    'datatables/jquery.dataTables.d.ts' : "dt/jquery.dataTables/jquery.dataTables.d.ts",
+                    'datatables/datatables.css': 'datatables/media/css/jquery.dataTables.css'
                 }
             },
             "datatables-plugins": {
                 files: {
-                    'css/datatables.bootstrap.css': 'datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css',
-                    'js/dataTables.bootstrap.js': 'datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js'
+                    'datatables/datatables.bootstrap.css': 'datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css',
+                    'datatables/datatables.bootstrap.js': 'datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js'
                 }
             },
             select2: {
                 files: {
-                    "js/select2.js": "select2/select2.js",
-                    "js/select2.min.js": "select2/select2.min.js",
-                    'js/select2.d.ts' : "dt/select2/select2.d.ts",
-                    "css/select2.css": "select2/select2.css"
+                    "select2/select2.js": "select2/select2.js",
+                    "select2/select2.min.js": "select2/select2.min.js",
+                    'select2/select2.d.ts' : "dt/select2/select2.d.ts",
+                    "select2/select2.css": "select2/select2.css"
                 }
             },
             tabletools: {
                 files: {
-                    "js/tabletools.js": "/tabletools/js/dataTables.tableTools.js",
-                    "css/tabletools.css": "tabletools/css/dataTables.tableTools.css"
+                    "tabletools/tabletools.js": "/tabletools/js/dataTables.tableTools.js",
+                    "tabletools/tabletools.css": "tabletools/css/dataTables.tableTools.css"
                 }
             },
             uniform: {
                 files: {
-                    'js/jquery.uniform.js': "uniform/jquery.uniform.js",
-                    'js/jquery.uniform.min.js': "uniform/jquery.uniform.min.js"
+                    'uniform/jquery.uniform.js': "uniform/jquery.uniform.js",
+                    'uniform/jquery.uniform.min.js': "uniform/jquery.uniform.min.js"
                 }
             },
             "sb-admin-2": {
                 files: {
-                    'js/sb-admin-2.js': "sb-admin-2/js/sb-admin-2.js",
-                    'css/sb-admin-2.css': "sb-admin-2/css/sb-admin-2.css",
+                    'sbadmin2/sb-admin-2.js': "sb-admin-2/js/sb-admin-2.js",
+                    'sbadmin2/sb-admin-2.css': "sb-admin-2/css/sb-admin-2.css",
                 }
             },
             "metisMenu": {
                 files: {
-                    'js/metisMenu.js': "metisMenu/dist/metisMenu.js",
-                    'css/metisMenu.css': "metisMenu/dist/metisMenu.css",
+                    'metisMenu/metisMenu.js': "metisMenu/dist/metisMenu.js",
+                    'metisMenu/metisMenu.css': "metisMenu/dist/metisMenu.css",
                 }
             },
             "font-awesome": {
                 files: {
-                    'css/font-awesome.css': "font-awesome/css/font-awesome.css",
+                    'fonts/font-awesome.css': "font-awesome/css/font-awesome.css",
                     'fonts': "font-awesome/fonts/**"
                 }
             }
-
+        },
+		
+		typescript: {
+            base: {
+                src: ['src/main/webapp/WEB-INF/ts/*.ts'],
+                dest: '.',
+				options: {
+				   sourceMap : true
+				}
+            }
         }
-    })
-    ;
+	});
 
     grunt.loadNpmTasks('grunt-bowercopy');
+    grunt.loadNpmTasks('grunt-typescript');
 
 // Default task(s).
-    grunt.registerTask('default', ['bowercopy']);
-}
-;
+    grunt.registerTask('default', ['bowercopy', 'typescript']);
+};

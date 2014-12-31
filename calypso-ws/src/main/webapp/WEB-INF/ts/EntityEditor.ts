@@ -1,7 +1,7 @@
-/// <reference path="../jslib/js/jquery.d.ts" />
-/// <reference path="../jslib/js/jquery.dataTables.d.ts" />
+/// <reference path="../jslib/jquery/jquery.d.ts" />
+/// <reference path="../jslib/datatables/jquery.dataTables.d.ts" />
 /// <reference path="jquery.dataTables-1.10.d.ts" />
-/// <reference path="../jslib/js/select2.d.ts" />
+/// <reference path="../jslib/select2/select2.d.ts" />
 /// <reference path="jquery.uniform.d.ts" />
 /// <reference path="GEntity.ts" />
 /// <reference path="GRepository.ts" />
@@ -121,7 +121,7 @@ module EntityEditor {
 
             ui.uploadPanel.find('.action-upload').off().click(function (e:JQueryEventObject) {
                 var $input = $(':input:file', ui.uploadPanel);
-                var files = $input.get(0).files;
+                var files = $input.get(0)["files"];
                 if (!files || files.length == 0) {
                     alert("No files selected.");
                 }

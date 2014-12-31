@@ -1,4 +1,4 @@
-/// <reference path="../jslib/js/jquery.d.ts" />
+/// <reference path="../jslib/jquery/jquery.d.ts" />
 /// <reference path="GEntity.ts" />
 
 module GRepository {
@@ -8,7 +8,7 @@ module GRepository {
         addItem(rq:T) : JQueryPromise<T>;
         saveItem(rq:T) : JQueryPromise<T>;
         deleteItem(k:K): JQueryPromise<T>;
-        uploadItems(fileName:FileList) : JQueryPromise<any>;
+        uploadItems(fileNames:FileList) : JQueryPromise<any>;
         index(t:T): K;
     }
 
@@ -104,7 +104,7 @@ module GRepository {
         constructor(private url:string) {
         }
 
-        getItems() {
+        getItems() :JQueryPromise<GEntity.List<T>> {
             console.debug("getItems");
             var promise:JQueryPromise<GEntity.List<T>> = $.ajax({
                 dataType: 'json',

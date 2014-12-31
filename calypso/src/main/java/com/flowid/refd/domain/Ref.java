@@ -1,4 +1,4 @@
-package com.flowid.shell;
+package com.flowid.refd.domain;
 
 /**
  * This class holds a reference to another object. Used to implement passing by reference to the

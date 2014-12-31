@@ -1,6 +1,6 @@
-/// <reference path="../jslib/js/jquery.d.ts" />
-/// <reference path="../jslib/js/jquery.dataTables.d.ts" />
-/// <reference path="../jslib/js/select2.d.ts" />
+/// <reference path="../jslib/jquery/jquery.d.ts" />
+/// <reference path="../jslib/datatables/jquery.dataTables.d.ts" />
+/// <reference path="../jslib/select2/select2.d.ts" />
 /// <reference path="jquery.uniform.d.ts" />
 
 module LondiniumTheme {
@@ -125,7 +125,7 @@ module LondiniumTheme {
         $('[data-panel=close]').click(function (e) {
             e.preventDefault();
             var $panelContent = $(this).parent().parent().parent();
-            $panelContent.slideUp(200).remove(200);
+            $panelContent.slideUp(200).remove("200");
         });
     }
 

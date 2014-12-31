@@ -49,19 +49,6 @@ public class JTestShell {
     }
 
     /**
-     * One way to set local variables
-     */
-    @Test
-    public void testAsString() {
-        Ref<String> arg = new Ref<>();
-        Params
-            .args(new String[] {"a"})
-            .atLeast(1)
-            .copy(0, arg);
-        assertEquals("a", arg.get());
-    }
-
-    /**
      * A third way to get an argument, no side-effects
      */
     @Test

@@ -1,7 +1,7 @@
-/// <reference path="../jslib/ts/jquery.d.ts" />
-/// <reference path="../jslib/ts/jquery.dataTables.d.ts" />
-/// <reference path="../jslib/ts/select2.d.ts" />
-/// <reference path="../jslib/ts/jquery.uniform.d.ts" />
+/// <reference path="../jslib/jquery/jquery.d.ts" />
+/// <reference path="../jslib/datatables/jquery.dataTables.d.ts" />
+/// <reference path="../jslib/select2/select2.d.ts" />
+/// <reference path="jquery.uniform.d.ts" />
 var SbAdminTheme;
 (function (SbAdminTheme) {
     function init() {

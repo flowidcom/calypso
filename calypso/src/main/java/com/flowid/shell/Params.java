@@ -154,19 +154,6 @@ public class Params {
     }
 
     /**
-     * Copy the argument into a reference structure
-     * 
-     * @return
-     * @throws IllegalArgumentException
-     */
-    public Params copy(int i, Ref<String> ref) {
-        if (args != null && args.length > i) {
-            ref.set(args[i]);
-        }
-        return this;
-    }
-
-    /**
      * Check that the argument selected matches a regular expression
      * 
      * @param index of the argument

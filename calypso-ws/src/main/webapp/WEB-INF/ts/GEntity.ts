@@ -1,5 +1,5 @@
-/// <reference path="../jslib/js/jquery.d.ts" />
-/// <reference path="../jslib/js/jquery.dataTables.d.ts" />
+/// <reference path="../jslib/jquery/jquery.d.ts" />
+/// <reference path="../jslib/datatables/jquery.dataTables.d.ts" />
 
 module GEntity {
     export interface Metadata {

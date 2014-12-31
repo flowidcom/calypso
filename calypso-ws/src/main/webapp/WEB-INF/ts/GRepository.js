@@ -1,4 +1,4 @@
-/// <reference path="../jslib/ts/jquery.d.ts" />
+/// <reference path="../jslib/jquery/jquery.d.ts" />
 /// <reference path="GEntity.ts" />
 var GRepository;
 (function (GRepository) {

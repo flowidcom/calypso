@@ -4,12 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Generic integration test. Looks for sytem properties to find the environment to be used in
+ * Generic integration test. Looks for system properties to find the environment to be used in
  * running the test.
  */
 public abstract class AbstractJIntTest extends AbstractJTest {
     private static final Logger logger = LoggerFactory.getLogger(AbstractJIntTest.class);
-    private static final String APP_NAME = "calypso";
     private static final String APP_ENV = "app.env";
 
     // predefined environments
@@ -41,11 +40,12 @@ public abstract class AbstractJIntTest extends AbstractJTest {
             System.setProperty(APP_ENV, env);
         }
 
-
+        // look for the configuration directory in the system property
         String appConfigDir = System.getProperty(APP_CONFIG_DIR);
-        // in a developer's environment, the configuration directory ../<app>-config/env
+
+        // if not, default to the area of this project
         if (appConfigDir == null) {
-            appConfigDir = "../" + APP_NAME + "-config/env/" + env;
+            appConfigDir = "src/main/config/" + env;
         }
         System.setProperty(APP_CONFIG_DIR, appConfigDir);
 
