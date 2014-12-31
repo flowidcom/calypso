@@ -8,7 +8,7 @@ Some of the ideas shown in this project:
 
 * Use the same schema files to create both SOAP/XML messages and JSON messages - JacksonJaxbJsonProvider.
 
-* UI development using a combination of Javascript/Typescript + Spring MVC/Tiles. See calypso-ws/src/main/webapp for the overall application. Javascript is a powerfull language, but is also hard to develop large-scale applications. All the JS code in Calypso is built using Typescript - a superset of Javascript with type annotations. Check calypso-ws/src/main/webapp/WEB-INF/ts/*.ts. JetBrain WebStorm is a great IDE for developing Typescript + Javascript applications. See http://flowid.com/typescript for more details of using TypeScript for large scale web-applications.
+* UI development using a combination of Javascript/Typescript + Spring MVC/Tiles. See calypso-ws/src/main/webapp for the overall application. Javascript is a powerfull language, but is also hard to develop large-scale applications. All the JS code in Calypso is built using Typescript - a superset of Javascript with type annotations. Check calypso-ws/src/main/webapp/WEB-INF/ts/*.ts. JetBrain WebStorm is a great IDE for developing Typescript + Javascript applications. See http://flowid.com/typescript for more details on using TypeScript for large scale web-applications.
 
 * Maven (mvn) is at the core of the build system. An application may have multiple components, all sharing the same dependencies and versioning scheme. Look at the root pom.xml and then at the calypso-parent/pom.xml.
 
