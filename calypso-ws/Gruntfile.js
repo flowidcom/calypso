@@ -8,7 +8,7 @@ module.exports = function (grunt) {
             options: {
                 runBower: false,
                 srcPrefix: 'bower_components',
-                destPrefix: 'src/main/webapp/WEB-INF/jslib'
+                destPrefix: 'src/main/webapp/jslib'
             },
             jquery: {
                 files: {
@@ -87,7 +87,7 @@ module.exports = function (grunt) {
 		
 		typescript: {
             base: {
-                src: ['src/main/webapp/WEB-INF/ts/*.ts'],
+                src: ['src/main/webapp/ts/*.ts'],
                 dest: '.',
 				options: {
 				   sourceMap : true

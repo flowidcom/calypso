@@ -19,10 +19,10 @@
     <context:annotation-config />
     <context:component-scan base-package="com.flowid.refd" />
 
-    <mvc:resources mapping="/jslib/**" location="/WEB-INF/jslib/" />
-    <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
-    <mvc:resources mapping="/ts/**" location="/WEB-INF/ts/" />
-    <mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
+    <mvc:resources mapping="/jslib/**" location="/jslib/" />
+    <mvc:resources mapping="/js/**" location="/js/" />
+    <mvc:resources mapping="/ts/**" location="/ts/" />
+    <mvc:resources mapping="/css/**" location="/css/" />
 
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
