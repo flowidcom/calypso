@@ -95,7 +95,7 @@ module GRepository {
         }
 
         index(t:T):K {
-            return null;
+            throw new Error('This method is abstract');
         }
 
     }
@@ -106,60 +106,54 @@ module GRepository {
 
         getItems() :JQueryPromise<GEntity.List<T>> {
             console.debug("getItems");
-            var promise:JQueryPromise<GEntity.List<T>> = $.ajax({
+            return $.ajax({
                 dataType: 'json',
                 headers: {"X-Client-Api-Version": "1.0"},
                 url: this.url,
                 cache: false,
                 type: 'GET'
             });
-
-            return promise;
         }
 
-        addItem(t:T) {
-            var promise:JQueryPromise<T> = $.ajax({
+        addItem(t:T) :JQueryPromise<T> {
+            return $.ajax({
                 dataType: 'json',
                 data: JSON.stringify(t),
                 url: this.url,
                 type: 'POST',
                 contentType: "application/json"
             });
-            return promise;
         }
 
         saveItem(t:T) {
             var saveItemUrl = this.url + "/" + this.index(t);
-            var jqXHR = $.ajax({
+            return $.ajax({
                 dataType: 'json',
                 data: JSON.stringify(t),
                 url: saveItemUrl,
                 type: 'POST',
                 contentType: "application/json"
             });
-            return jqXHR;
         }
 
         deleteItem(k:K):JQueryPromise<any> {
             var deleteUrl:string = this.url + "/" + k;
-            var jqXHR = $.ajax({
+            return $.ajax({
                 dataType: 'json',
                 url: deleteUrl,
                 type: 'DELETE'
             });
-            return jqXHR;
         }
 
         getItem(k:K):JQueryPromise<any> {
             console.debug("getItem(" + k + ")");
             var getItemUrl:string = this.url + "/" + k;
-            var jqXHR = $.ajax({
+            return $.ajax({
                 dataType: 'json',
                 url: getItemUrl,
                 cache: false,
                 type: 'GET'
             });
-            return jqXHR;
         }
 
         uploadItems(files:FileList):JQueryPromise<any> {
@@ -170,7 +164,7 @@ module GRepository {
                 data.append(key, value);
             });
 
-            var jqXHR = $.ajax({
+            return $.ajax({
                 url: this.url + "/action/upload",
                 type: 'POST',
                 data: data,
@@ -179,11 +173,11 @@ module GRepository {
                 processData: false, // Don't process the files
                 contentType: false // Set content type to false as jQuery will tell the server its a query string request
             });
-            return jqXHR;
         }
 
+        // This operation is implemented in derived classes
         index(t:T):K {
-            return null;
+            throw new Error('This method is abstract');
         }
     }
 }

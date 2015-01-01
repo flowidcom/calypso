@@ -11,6 +11,7 @@
 <script type="text/javascript" src="${resources}/jslib/tabletools/tabletools.js"></script>
 <script type="text/javascript" src="${resources}/jslib/sbadmin2/sb-admin-2.js"></script>
 
+<script type="text/javascript" src="${resources}/ts/AppConfig.js"></script>
 <script type="text/javascript">
    AppConfig.contextPath='<c:out value="${pageContext.servletContext.contextPath}" />';
 </script>

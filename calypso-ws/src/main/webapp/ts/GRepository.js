@@ -81,7 +81,7 @@ var GRepository;
             return d.promise();
         };
         MemoryRepository.prototype.index = function (t) {
-            return null;
+            throw new Error('This method is abstract');
         };
         return MemoryRepository;
     })();
@@ -92,55 +92,50 @@ var GRepository;
         }
         AjaxRepository.prototype.getItems = function () {
             console.debug("getItems");
-            var promise = $.ajax({
+            return $.ajax({
                 dataType: 'json',
                 headers: { "X-Client-Api-Version": "1.0" },
                 url: this.url,
                 cache: false,
                 type: 'GET'
             });
-            return promise;
         };
         AjaxRepository.prototype.addItem = function (t) {
-            var promise = $.ajax({
+            return $.ajax({
                 dataType: 'json',
                 data: JSON.stringify(t),
                 url: this.url,
                 type: 'POST',
                 contentType: "application/json"
             });
-            return promise;
         };
         AjaxRepository.prototype.saveItem = function (t) {
             var saveItemUrl = this.url + "/" + this.index(t);
-            var jqXHR = $.ajax({
+            return $.ajax({
                 dataType: 'json',
                 data: JSON.stringify(t),
                 url: saveItemUrl,
                 type: 'POST',
                 contentType: "application/json"
             });
-            return jqXHR;
         };
         AjaxRepository.prototype.deleteItem = function (k) {
             var deleteUrl = this.url + "/" + k;
-            var jqXHR = $.ajax({
+            return $.ajax({
                 dataType: 'json',
                 url: deleteUrl,
                 type: 'DELETE'
             });
-            return jqXHR;
         };
         AjaxRepository.prototype.getItem = function (k) {
             console.debug("getItem(" + k + ")");
             var getItemUrl = this.url + "/" + k;
-            var jqXHR = $.ajax({
+            return $.ajax({
                 dataType: 'json',
                 url: getItemUrl,
                 cache: false,
                 type: 'GET'
             });
-            return jqXHR;
         };
         AjaxRepository.prototype.uploadItems = function (files) {
             console.debug("Upload files");
@@ -148,7 +143,7 @@ var GRepository;
             $.each(files, function (key, value) {
                 data.append(key, value);
             });
-            var jqXHR = $.ajax({
+            return $.ajax({
                 url: this.url + "/action/upload",
                 type: 'POST',
                 data: data,
@@ -157,10 +152,10 @@ var GRepository;
                 processData: false,
                 contentType: false // Set content type to false as jQuery will tell the server its a query string request
             });
-            return jqXHR;
         };
+        // This operation is implemented in derived classes
         AjaxRepository.prototype.index = function (t) {
-            return null;
+            throw new Error('This method is abstract');
         };
         return AjaxRepository;
     })();

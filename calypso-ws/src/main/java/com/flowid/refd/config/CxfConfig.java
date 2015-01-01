@@ -19,6 +19,7 @@ import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.model.wadl.WadlGenerator;
 import org.apache.cxf.message.Message;
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharingFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,7 +130,8 @@ public class CxfConfig {
                           jsonProvider,
                           getWadlGenerator(),
                           gExceptionHandler,
-                          exceptionHandler)
+                          exceptionHandler,
+                          new CrossOriginResourceSharingFilter())
             );
         ArrayList<Feature> features = new ArrayList<Feature>();
         features.addAll(cxf().getFeatures());
