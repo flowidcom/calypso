@@ -12,11 +12,9 @@ Some of the ideas shown in this project:
 
 * Maven (mvn) is at the core of the build system. An application may have multiple components, all sharing the same dependencies and versioning scheme. Look at the root pom.xml and then at the calypso-parent/pom.xml.
 
-* Use bower and grunt for building Javascript applications. Check the files calypso-ws/bower.json and calypso-ws/Gruntfile.js. The external js libraries are checked in but they can be generated based on these build scripts.
+* Use Bower and Grunt for building Javascript applications. Check the files calypso-ws/bower.json and calypso-ws/Gruntfile.js. The external js libraries are checked in but they can be generated based on these build scripts.
 
-* Create a Docker image for nginx. See the file src/main/docker/Dockerfile
-
-* Unit testing with JUnit plus some extensions to make regression testing simpler and support integration testing. Check calypso/src/test/java/**/JTest... .
+* Use Docker to create images for the application runnong on the cloud. See the file src/main/docker/tomcat.dockerfile.
 
 * Find bugs with ... findbugs. See calypso-parent/find-bugs and the mvn-profile findbugs in calypso-parent/pom.xml file.
  
