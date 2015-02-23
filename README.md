@@ -14,7 +14,7 @@ Some of the ideas shown in this project:
 
 * Use Bower and Grunt for building Javascript applications. Check the files calypso-ws/bower.json and calypso-ws/Gruntfile.js. The external js libraries are checked in but they can be generated based on these build scripts.
 
-* Use Docker to create images for the application runnong on the cloud. See the file src/main/docker/tomcat.dockerfile.
+* Use Docker to create images for the application running on the cloud. See the file src/main/docker/tomcat.dockerfile.
 
 * Find bugs with ... findbugs. See calypso-parent/find-bugs and the mvn-profile findbugs in calypso-parent/pom.xml file.
  

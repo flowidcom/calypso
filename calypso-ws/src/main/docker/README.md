@@ -3,12 +3,18 @@ Docker Build Instructions
 
 This folder contains the configuration for building Docker containers.
 
+## Initalize Boot2Docker
+boot2docker init
+
 ## Start the Docker host
 
 boot2docker start
 boot2docker stop
 Add a new entry in the port forwarding for Boot2Docker:
-  host 9999 -> boot2docker 9999
+  host 10080 -> boot2docker 80
+  
+On Mac:
+VBoxManage modifyvm "boot2docker-vm" --natpf1 "tcp-port1080,tcp,,10080,,80";
 
 ## Coonnect to the host
 
@@ -19,10 +25,13 @@ boot2docker ssh
 export PS1="\h# \w\n\$ "
 cd /c/Users/calin/git/calypso/calypso-ws
 
+####### This is the Docker context, all the files that required for the build are in this directory
 mkdir -p target/static_web
 cd target/static_web
 cp ../../src/main/docker/static_web.dockerfile Dockerfile
+cp ../../src/main/webapp/index.html .
 docker build -t=flowid/static_web .
+
 sudo docker run -d -p 9999:80 --name static_web flowid/static_web nginx -g "daemon off;"
 
 ## Build the tomcat application
