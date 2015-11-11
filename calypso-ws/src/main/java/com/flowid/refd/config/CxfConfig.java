@@ -18,6 +18,7 @@ import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.model.wadl.WadlGenerator;
+import org.apache.cxf.jaxrs.swagger.Swagger2Feature;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharingFilter;
 import org.slf4j.Logger;
@@ -30,9 +31,8 @@ import org.springframework.context.annotation.DependsOn;
 import com.fasterxml.jackson.jaxrs.cfg.Annotations;
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.flowid.refd.domain.GException;
 import com.flowid.refd.service.CountryResource;
-import com.flowid.refd.v1.GError;
+import com.flowid.xdo.util.AppException;
 
 @Configuration
 public class CxfConfig {
@@ -49,21 +49,15 @@ public class CxfConfig {
         LoggingOutInterceptor loggingOutInterceptor = new LoggingOutInterceptor();
         loggingOutInterceptor.setPrettyLogging(true);
         cxf.setInInterceptors(
-            Arrays.<Interceptor<? extends Message>>asList(
-                loggingInInterceptor
-                )
-            );
+                Arrays.<Interceptor<? extends Message>> asList(
+                        loggingInInterceptor));
         cxf.setOutInterceptors(
-            Arrays.<Interceptor<? extends Message>>asList(
-                loggingOutInterceptor
-                )
-            );
-        cxf.setInFaultInterceptors(Arrays.<Interceptor<? extends Message>>asList(
-            loggingInInterceptor
-            ));
-        cxf.setOutFaultInterceptors(Arrays.<Interceptor<? extends Message>>asList(
-            loggingOutInterceptor
-            ));
+                Arrays.<Interceptor<? extends Message>> asList(
+                        loggingOutInterceptor));
+        cxf.setInFaultInterceptors(Arrays.<Interceptor<? extends Message>> asList(
+                loggingInInterceptor));
+        cxf.setOutFaultInterceptors(Arrays.<Interceptor<? extends Message>> asList(
+                loggingOutInterceptor));
         cxf.setProperty("bus.jmx.enabled", "true");
         cxf.setProperty("faultStackTraceEnabled", "true");
         cxf.setProperty("exceptionMessageCauseEnabled", "true");
@@ -87,29 +81,27 @@ public class CxfConfig {
     }
 
     @Bean
-    @DependsOn({"cxf", "jsonProvider"})
+    @DependsOn({ "cxf", "jsonProvider" })
     public Server jaxRsServer() {
-        final JAXRSServerFactoryBean factory =
-                RuntimeDelegate.getInstance().createEndpoint(
-                                                             new Application() {
-                                                                 public Set<Class<?>> getClasses() {
-                                                                     HashSet<Class<?>> classes =
-                                                                             new HashSet<Class<?>>();
-                                                                     classes.add(CountryResource.class);
-                                                                     return classes;
-                                                                 }
-                                                             },
-                                                             JAXRSServerFactoryBean.class
-                    );
-        factory.setServiceBeans(Arrays.<Object>asList(country2Resource()));
+        final JAXRSServerFactoryBean factory = RuntimeDelegate.getInstance().createEndpoint(
+                new Application() {
+                    @Override
+                    public Set<Class<?>> getClasses() {
+                        HashSet<Class<?>> classes = new HashSet<Class<?>>();
+                        classes.add(CountryResource.class);
+                        return classes;
+                    }
+                },
+                JAXRSServerFactoryBean.class);
+        factory.setServiceBeans(Arrays.<Object> asList(country2Resource()));
         factory.setAddress("/");
 
-        ExceptionMapper<GException> gExceptionHandler = new ExceptionMapper<GException>() {
+        ExceptionMapper<AppException> gExceptionHandler = new ExceptionMapper<AppException>() {
             @Override
-            public Response toResponse(GException ge) {
+            public Response toResponse(AppException ge) {
                 logger.error("Exception - {}", ge.getMessage());
                 logger.debug("Details: ", ge);
-                return Response.status(ge.getHttpCode()).entity(ge.asError()).build();
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ge.getMessage()).build();
             }
         };
 
@@ -118,23 +110,20 @@ public class CxfConfig {
             public Response toResponse(Exception e) {
                 logger.error("Exception - {}", e.getMessage());
                 logger.debug("Details: ", e);
-                GError err = new GError()
-                    .withCode(1000)
-                    .withMessage(e.getClass().getSimpleName() + "-" + e.getMessage());
-                return Response.status(500).entity(err).build();
+                return Response.status(500).entity(e.getMessage()).build();
             }
         };
 
         factory.setProviders(
-            Arrays.asList(
-                          jsonProvider,
-                          getWadlGenerator(),
-                          gExceptionHandler,
-                          exceptionHandler,
-                          new CrossOriginResourceSharingFilter())
-            );
+                Arrays.asList(
+                        jsonProvider,
+                        getWadlGenerator(),
+                        gExceptionHandler,
+                        exceptionHandler,
+                        new CrossOriginResourceSharingFilter()));
         ArrayList<Feature> features = new ArrayList<Feature>();
         features.addAll(cxf().getFeatures());
+        features.add(getSwagger2Feature());
         factory.setFeatures(features);
 
         return factory.create();
@@ -150,9 +139,22 @@ public class CxfConfig {
         WadlGenerator wg = new WadlGenerator();
         wg.setApplicationTitle("Reference Data Management");
         wg.setNamespacePrefix("rd");
-        wg.setLinkJsonToXmlSchema(true);
+        wg.setLinkAnyMediaTypeToXmlSchema(true);
         wg.setAddResourceAndMethodIds(false);
         return wg;
+    }
+
+    @Bean
+    public Swagger2Feature getSwagger2Feature() {
+        Swagger2Feature sw = new Swagger2Feature();
+        sw.setBasePath("/calypso-ws");
+        sw.setTitle("Countries Service");
+        sw.setDescription("Information about countries.");
+        sw.setResourcePackage(CountryResource.class.getPackage().getName());
+        sw.setContact(null);
+        sw.setScan(true);
+
+        return sw;
     }
 
     public JacksonJsonProvider getJsonProvider() {

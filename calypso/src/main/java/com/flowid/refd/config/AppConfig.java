@@ -12,7 +12,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 @Configuration
-public class RefDataConfig {
+public class AppConfig {
     static private final String APP_NAME = "calypso";
 
     @Bean

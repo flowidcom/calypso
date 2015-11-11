@@ -1,4 +1,4 @@
-package com.flowid.refd.rest;
+package com.flowid.test.rest;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -29,9 +29,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.flowid.refd.v1.GList;
-import com.flowid.refd.v1.Upload;
 import com.flowid.rest.test.AbstractJIntTest;
+import com.flowid.xdo.cmn.GList;
+import com.flowid.xdo.cmn.Upload;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/spring/calypso.context.xml"})
