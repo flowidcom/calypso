@@ -48,21 +48,15 @@ public class CxfConfig {
         LoggingOutInterceptor loggingOutInterceptor = new LoggingOutInterceptor();
         loggingOutInterceptor.setPrettyLogging(true);
         cxf.setInInterceptors(
-            Arrays.<Interceptor<? extends Message>>asList(
-                loggingInInterceptor
-                )
-            );
+                Arrays.<Interceptor<? extends Message>> asList(
+                        loggingInInterceptor));
         cxf.setOutInterceptors(
-            Arrays.<Interceptor<? extends Message>>asList(
-                loggingOutInterceptor
-                )
-            );
-        cxf.setInFaultInterceptors(Arrays.<Interceptor<? extends Message>>asList(
-            loggingInInterceptor
-            ));
-        cxf.setOutFaultInterceptors(Arrays.<Interceptor<? extends Message>>asList(
-            loggingOutInterceptor
-            ));
+                Arrays.<Interceptor<? extends Message>> asList(
+                        loggingOutInterceptor));
+        cxf.setInFaultInterceptors(Arrays.<Interceptor<? extends Message>> asList(
+                loggingInInterceptor));
+        cxf.setOutFaultInterceptors(Arrays.<Interceptor<? extends Message>> asList(
+                loggingOutInterceptor));
         cxf.setProperty("bus.jmx.enabled", "true");
         cxf.setProperty("faultStackTraceEnabled", "true");
         cxf.setProperty("exceptionMessageCauseEnabled", "true");
@@ -86,22 +80,19 @@ public class CxfConfig {
     }
 
     @Bean
-    @DependsOn({"cxf", "jsonProvider"})
+    @DependsOn({ "cxf", "jsonProvider" })
     public Server jaxRsServer() {
-        final JAXRSServerFactoryBean factory =
-                RuntimeDelegate.getInstance().createEndpoint(
-                                                             new Application() {
-                                                                 @Override
-                                                                public Set<Class<?>> getClasses() {
-                                                                     HashSet<Class<?>> classes =
-                                                                             new HashSet<Class<?>>();
-                                                                     classes.add(CountryResource.class);
-                                                                     return classes;
-                                                                 }
-                                                             },
-                                                             JAXRSServerFactoryBean.class
-                    );
-        factory.setServiceBeans(Arrays.<Object>asList(country2Resource()));
+        final JAXRSServerFactoryBean factory = RuntimeDelegate.getInstance().createEndpoint(
+                new Application() {
+                    @Override
+                    public Set<Class<?>> getClasses() {
+                        HashSet<Class<?>> classes = new HashSet<Class<?>>();
+                        classes.add(CountryResource.class);
+                        return classes;
+                    }
+                },
+                JAXRSServerFactoryBean.class);
+        factory.setServiceBeans(Arrays.<Object> asList(country2Resource()));
         factory.setAddress("/");
 
         ExceptionMapper<AppException> gExceptionHandler = new ExceptionMapper<AppException>() {
@@ -123,13 +114,12 @@ public class CxfConfig {
         };
 
         factory.setProviders(
-            Arrays.asList(
-                          jsonProvider,
-                          getWadlGenerator(),
-                          gExceptionHandler,
-                          exceptionHandler,
-                          new CrossOriginResourceSharingFilter())
-            );
+                Arrays.asList(
+                        jsonProvider,
+                        getWadlGenerator(),
+                        gExceptionHandler,
+                        exceptionHandler,
+                        new CrossOriginResourceSharingFilter()));
         ArrayList<Feature> features = new ArrayList<Feature>();
         features.addAll(cxf().getFeatures());
         factory.setFeatures(features);
