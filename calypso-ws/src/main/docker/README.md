@@ -32,6 +32,25 @@ Build the static_web image using nginx
     
     sudo docker run -d -p 10080:80 --name static_web flowid/static_web nginx -g "daemon off;"
 
+Exit docker and check that the application is running:
+
+    exit
+    curl http://localhost:10080
+    
+And the output is:
+
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+	</head>
+	
+	<body>
+	  <p>Application Ref Data</p>
+	</body>
+	
+	</html>    
+
+
 Build the tomcat application
 
     cd /c/Users/calin/git/calypso/calypso-ws

@@ -1,19 +1,41 @@
+Eclipse Configuration
+======================
+
+
+###Install Code Styles
+
 The coding style follows the same conventions as described in: 
     https://google-styleguide.googlecode.com/svn/trunk/javaguide.html
 
-To install the code styles:
-
 Window > Preferences > Java > Code Style > Formatter
-Import > ...-code-style.xml
+Import > java-code-style.xml
 
-To install the code templates:
+###Install Code Templates
 
 Window > Preferences > Java > Code Style > Templates
-Import > ...-code-templates.xml
+Import > java-code-templates.xml
 
-To install editor templates:
+###Editor Templates
 
 Window > Preferences > Java > Editor > Templates
-Import > ...-editor-templates.xml
+Import > java-editor-templates.xml
+
+###Save Actions
+
+Preferences > Java > Editor > Save Actions > Perform Selected Actions on Save:
+
+   * Format edited lines
+   * Organize imports
+   * Add missing annotations
+
+### Add Keyboard Shortcuts
+
+Preferences > General > Keys
+Line Start
+Select Line Start
+Line End
+Select Line End
+Run JUnit
+
 
 

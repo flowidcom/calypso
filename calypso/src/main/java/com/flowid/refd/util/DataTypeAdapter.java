@@ -14,7 +14,7 @@ public class DataTypeAdapter {
     private static final String XML_DATE_FORMAT = "YYYY-MM-dd";
     private static final String XML_DATE_BEFORE_1900_FORMAT = "YYYY-MM-dd'T'HH:mm:ss";
 
-    public static final DateTimeZone DEFAULT_TIME_ZONE = DateTimeZone.forID("America/Chicago");
+    public static final DateTimeZone DEFAULT_TIME_ZONE = DateTimeZone.forID("America/New York");
 
     private static final DateTimeFormatter XML_DATE_FORMATER = DateTimeFormat.forPattern(XML_DATE_FORMAT);
     private static final DateTimeFormatter XML_DATE_BEFORE_1900_FORMATER =
