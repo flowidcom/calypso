@@ -18,6 +18,7 @@ import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.model.wadl.WadlGenerator;
+import org.apache.cxf.jaxrs.swagger.Swagger2Feature;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharingFilter;
 import org.slf4j.Logger;
@@ -122,6 +123,7 @@ public class CxfConfig {
                         new CrossOriginResourceSharingFilter()));
         ArrayList<Feature> features = new ArrayList<Feature>();
         features.addAll(cxf().getFeatures());
+        features.add(getSwagger2Feature());
         factory.setFeatures(features);
 
         return factory.create();
@@ -137,9 +139,22 @@ public class CxfConfig {
         WadlGenerator wg = new WadlGenerator();
         wg.setApplicationTitle("Reference Data Management");
         wg.setNamespacePrefix("rd");
-        wg.setLinkJsonToXmlSchema(true);
+        wg.setLinkAnyMediaTypeToXmlSchema(true);
         wg.setAddResourceAndMethodIds(false);
         return wg;
+    }
+
+    @Bean
+    public Swagger2Feature getSwagger2Feature() {
+        Swagger2Feature sw = new Swagger2Feature();
+        sw.setBasePath("/calypso-ws");
+        sw.setTitle("Countries Service");
+        sw.setDescription("Information about countries.");
+        sw.setResourcePackage(CountryResource.class.getPackage().getName());
+        sw.setContact(null);
+        sw.setScan(true);
+
+        return sw;
     }
 
     public JacksonJsonProvider getJsonProvider() {

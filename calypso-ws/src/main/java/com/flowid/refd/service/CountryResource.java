@@ -26,8 +26,6 @@ import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.apache.cxf.jaxrs.ext.multipart.ContentDisposition;
 import org.apache.cxf.jaxrs.ext.multipart.MultipartBody;
 import org.apache.cxf.rs.security.cors.CorsHeaderConstants;
-import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
-import org.apache.cxf.rs.security.cors.LocalPreflight;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,12 +34,14 @@ import com.flowid.xdo.cmn.Country;
 import com.flowid.xdo.cmn.GList;
 import com.flowid.xdo.cmn.Upload;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * Rest resource that manages the reference data "Country"
  */
+@Api
 @Path("/countries")
-@CrossOriginResourceSharing(allowAllOrigins = true,
-        allowHeaders = {"Content-Type", "X-Client-Api-Version"})
 public class CountryResource {
     private static final Logger logger = LoggerFactory.getLogger(CountryResource.class);
 
@@ -62,7 +62,6 @@ public class CountryResource {
 
     @OPTIONS
     @Path("/")
-    @LocalPreflight
     public Response options() {
         String origin = headers.getRequestHeader("Origin").get(0);
         // TODO add here a condition for which origins are supported
@@ -81,7 +80,7 @@ public class CountryResource {
 
     @OPTIONS
     @Path("/{cd}")
-    @LocalPreflight
+    @ApiOperation(value = "Retrieve Country information.")
     public Response optionsForItem() {
         return options();
     }
@@ -107,8 +106,6 @@ public class CountryResource {
     @GET
     @Produces("application/json")
     @Path("/{cd}")
-    @CrossOriginResourceSharing(allowAllOrigins = true,
-            allowHeaders = {"Content-Type", "X-Client-Api-Version"})
     public Country getCountryByCd(@PathParam("cd") String cd) {
         return repository.find(cd);
     }
