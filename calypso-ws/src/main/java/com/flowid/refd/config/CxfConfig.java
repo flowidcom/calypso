@@ -30,9 +30,8 @@ import org.springframework.context.annotation.DependsOn;
 import com.fasterxml.jackson.jaxrs.cfg.Annotations;
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.flowid.refd.domain.GException;
 import com.flowid.refd.service.CountryResource;
-import com.flowid.refd.v1.GError;
+import com.flowid.xdo.util.AppException;
 
 @Configuration
 public class CxfConfig {
@@ -92,7 +91,8 @@ public class CxfConfig {
         final JAXRSServerFactoryBean factory =
                 RuntimeDelegate.getInstance().createEndpoint(
                                                              new Application() {
-                                                                 public Set<Class<?>> getClasses() {
+                                                                 @Override
+                                                                public Set<Class<?>> getClasses() {
                                                                      HashSet<Class<?>> classes =
                                                                              new HashSet<Class<?>>();
                                                                      classes.add(CountryResource.class);
@@ -104,12 +104,12 @@ public class CxfConfig {
         factory.setServiceBeans(Arrays.<Object>asList(country2Resource()));
         factory.setAddress("/");
 
-        ExceptionMapper<GException> gExceptionHandler = new ExceptionMapper<GException>() {
+        ExceptionMapper<AppException> gExceptionHandler = new ExceptionMapper<AppException>() {
             @Override
-            public Response toResponse(GException ge) {
+            public Response toResponse(AppException ge) {
                 logger.error("Exception - {}", ge.getMessage());
                 logger.debug("Details: ", ge);
-                return Response.status(ge.getHttpCode()).entity(ge.asError()).build();
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ge.getMessage()).build();
             }
         };
 
@@ -118,10 +118,7 @@ public class CxfConfig {
             public Response toResponse(Exception e) {
                 logger.error("Exception - {}", e.getMessage());
                 logger.debug("Details: ", e);
-                GError err = new GError()
-                    .withCode(1000)
-                    .withMessage(e.getClass().getSimpleName() + "-" + e.getMessage());
-                return Response.status(500).entity(err).build();
+                return Response.status(500).entity(e.getMessage()).build();
             }
         };
 

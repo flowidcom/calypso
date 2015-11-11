@@ -7,14 +7,17 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.flowid.store.MemRepository;
+
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/spring/calypso.context.xml"})
+@ContextConfiguration(locations = { "/spring/calypso.context.xml" })
 public class JTestGRepository {
 
     @Test
     public void testRepository() {
-        GRepository<String, String> repository = new GRepository<String, String>() {
-            protected String index(String s) {
+        MemRepository<String, String> repository = new MemRepository<String, String>() {
+            @Override
+            public String key(String s) {
                 return s;
             }
         };

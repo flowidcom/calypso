@@ -3,9 +3,9 @@ package com.flowid.refd.ws.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.flowid.refd.v1.AddLogEntryRequest;
-import com.flowid.refd.v1.AddLogEntryResponse;
-import com.flowid.refd.v1.LogService;
+import com.flowid.xdo.cmn.AddLogEntryRequest;
+import com.flowid.xdo.cmn.AddLogEntryResponse;
+import com.flowid.xdo.cmn.LogService;
 
 @javax.jws.WebService(
         serviceName = "LogServiceService",

@@ -31,10 +31,10 @@ import org.apache.cxf.rs.security.cors.LocalPreflight;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.flowid.refd.store.GRepository;
-import com.flowid.refd.v1.Country;
-import com.flowid.refd.v1.GList;
-import com.flowid.refd.v1.Upload;
+import com.flowid.store.MemRepository;
+import com.flowid.xdo.cmn.Country;
+import com.flowid.xdo.cmn.GList;
+import com.flowid.xdo.cmn.Upload;
 
 /**
  * Rest resource that manages the reference data "Country"
@@ -45,8 +45,9 @@ import com.flowid.refd.v1.Upload;
 public class CountryResource {
     private static final Logger logger = LoggerFactory.getLogger(CountryResource.class);
 
-    static private GRepository<Country, String> repository = new GRepository<Country, String>() {
-        public String index(Country c) {
+    static private MemRepository<String, Country> repository = new MemRepository<String, Country>() {
+        @Override
+        public String key(Country c) {
             return c.getCode();
         }
     };

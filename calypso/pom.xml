@@ -18,14 +18,14 @@
             <artifactId>commons-io</artifactId>
         </dependency>
         <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
         </dependency>
-        
+
         <!-- Spring Data JPA -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -162,7 +162,7 @@
                             <defaultOptions>
                                 <extraargs>
                                     <extraarg>-p</extraarg>
-                                    <extraarg>urn:flowid.com:refd:v1=com.flowid.refd.v1</extraarg>
+                                    <extraarg>urn:flowid.com:refd:v1=com.flowid.xdo.cmn</extraarg>
                                     <extraarg>-autoNameResolution</extraarg>
                                     <extraarg>-xjc-Xsetters</extraarg>
                                     <extraarg>-xjc-enableIntrospection</extraarg>
@@ -170,15 +170,15 @@
                                     <extraarg>-xjc-Xannotate</extraarg>
                                 </extraargs>
                                 <bindingFiles>
-                                    <bindingFile>src/main/resources/bindings/refd.jaxb.xml</bindingFile>
+                                    <bindingFile>src/main/resources/bindings/cmn-jaxb.xml</bindingFile>
                                 </bindingFiles>
                             </defaultOptions>
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>src/main/resources/schemas/refd/LOG_LogService.wsdl</wsdl>
+                                    <wsdl>src/main/resources/schemas/cmn/LOG_LogService.wsdl</wsdl>
                                 </wsdlOption>
                                 <wsdlOption>
-                                    <wsdl>src/main/resources/schemas/refd/SYS_Echo.wsdl</wsdl>
+                                    <wsdl>src/main/resources/schemas/cmn/SYS_Echo.wsdl</wsdl>
                                 </wsdlOption>
                             </wsdlOptions>
                         </configuration>
@@ -267,55 +267,4 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <profiles>
-        <profile>
-            <id>wadl</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.cxf</groupId>
-                        <artifactId>cxf-wadl2java-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>wadl</id>
-                                <phase>generate-sources</phase>
-                                <goals>
-                                    <goal>wadl2java</goal>
-                                </goals>
-                                <configuration>
-                                    <sourceRoot>${basedir}/target/generated/wadl</sourceRoot>
-                                    <wadlOptions>
-                                        <wadlOption>
-                                            <wadl>${basedir}/src/main/resources/schemas/refd/DataUpload.wadl</wadl>
-                                            <impl>true</impl>
-                                            <packagename>com.flowid.refd.service</packagename>
-                                            <extraargs>
-                                                <extraarg>-verbose</extraarg>
-                                                <extraarg>-xjc-b</extraarg>
-                                                <extrarrg>-xjc${basedir}/src/main/resources/bindings/JAXB.xml</extrarrg>
-                                            </extraargs>
-                                            <schemaPackagenames>
-                                                <schemaPackagename>urn:flowid.com:refd:v1=com.flowid.refd.xdo</schemaPackagename>
-                                            </schemaPackagenames>
-                                        </wadlOption>
-                                    </wadlOptions>
-                                </configuration>
-                            </execution>
-                        </executions>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.jvnet.jaxb2_commons</groupId>
-                                <artifactId>jaxb2-basics-annotate</artifactId>
-                                <version>${org.jvnet.jaxb2_common.version}</version>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-
-                </plugins>
-            </build>
-
-        </profile>
-
-    </profiles>
 </project>

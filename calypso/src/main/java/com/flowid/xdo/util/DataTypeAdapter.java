@@ -1,4 +1,4 @@
-package com.flowid.refd.util;
+package com.flowid.xdo.util;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;

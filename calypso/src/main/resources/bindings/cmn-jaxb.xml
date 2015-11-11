@@ -12,14 +12,14 @@
         <xjc:simple/>
         <jaxb:serializable uid="1"/>
         <jaxb:javaType name="org.joda.time.DateTime" xmlType="xs:date"
-            parseMethod="com.flowid.refd.util.DataTypeAdapter.parseDate"
-            printMethod="com.flowid.refd.util.DataTypeAdapter.printDate" />
+            parseMethod="com.flowid.xdo.util.DataTypeAdapter.parseDate"
+            printMethod="com.flowid.xdo.util.DataTypeAdapter.printDate" />
         <jaxb:javaType name="org.joda.time.DateTime" xmlType="xs:dateTime"
-            parseMethod="com.flowid.refd.util.DataTypeAdapter.parseDateTime"
-            printMethod="com.flowid.refd.util.DataTypeAdapter.printDateTime" />
+            parseMethod="com.flowid.xdo.util.DataTypeAdapter.parseDateTime"
+            printMethod="com.flowid.xdo.util.DataTypeAdapter.printDateTime" />
         <jaxb:javaType name="java.lang.String" xmlType="xs:string"
-            parseMethod="com.flowid.refd.util.DataTypeAdapter.parseString"
-            printMethod="com.flowid.refd.util.DataTypeAdapter.printString" />
+            parseMethod="com.flowid.xdo.util.DataTypeAdapter.parseString"
+            printMethod="com.flowid.xdo.util.DataTypeAdapter.printString" />
     </jaxb:globalBindings>
 
 </jaxb:bindings>
