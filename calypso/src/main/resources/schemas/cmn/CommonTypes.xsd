@@ -32,27 +32,27 @@
 		<xs:sequence>
 			<xs:element name="Source" type="SourceType" maxOccurs="unbounded"/>
 		</xs:sequence>
-		<xs:attribute name="Version" type="xs:string" use="required">
+		<xs:attribute name="version" type="xs:string" use="required">
 			<xs:annotation>
 				<xs:documentation>Schema version used by the client. See also SchemaProperties entity.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="Timestamp" type="xs:dateTime">
+		<xs:attribute name="timestamp" type="xs:dateTime">
 			<xs:annotation>
 				<xs:documentation>Date and time when the message was sent by the client.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="TransactionId" type="xs:string">
+		<xs:attribute name="transactionId" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>When part of a business transaction, this can be used to audit/track requests.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="UserId" type="xs:string">
+		<xs:attribute name="userId" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>The user id which sent the request.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="ReasonCd" type="xs:string">
+		<xs:attribute name="reasonCd" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>Some transactions have a reason code.</xs:documentation>
 			</xs:annotation>
@@ -72,27 +72,27 @@
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
-		<xs:attribute name="Version" type="xs:string" default="@project.version@">
+		<xs:attribute name="version" type="xs:string" default="@project.version@">
 			<xs:annotation>
 				<xs:documentation>Schema version used by the service provider. See the entity SchemaProperties.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="TransactionId" type="xs:string">
+		<xs:attribute name="transactionId" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>Used for correlating request/response in some scenarios.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="Timestamp" type="xs:dateTime">
+		<xs:attribute name="timestamp" type="xs:dateTime">
 			<xs:annotation>
 				<xs:documentation>Date and time when the response was sent.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="AppId" type="xs:string">
+		<xs:attribute name="appId" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>If there are multiple instances of the application, this will identify the instance.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="Duration" type="xs:int">
+		<xs:attribute name="duration" type="xs:int">
 			<xs:annotation>
 				<xs:documentation>Time spent in the service for the request in milliseconds.</xs:documentation>
 			</xs:annotation>
@@ -114,7 +114,7 @@
 	<xs:complexType name="Param">
 		<xs:simpleContent>
 			<xs:extension base="xs:string">
-				<xs:attribute name="Name" type="xs:string"/>
+				<xs:attribute name="name" type="xs:string"/>
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
