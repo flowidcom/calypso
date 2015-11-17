@@ -72,7 +72,7 @@
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
-		<xs:attribute name="version" type="xs:string" default="@project.version@">
+		<xs:attribute name="version" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>Schema version used by the service provider. See the entity SchemaProperties.</xs:documentation>
 			</xs:annotation>
