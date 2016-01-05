@@ -1,4 +1,4 @@
-package com.flowid.xdo.util;
+package com.flowid.futils;
 
 /**
  * Utility class that will allow the developer to assert conditions. Throw runtime exception if

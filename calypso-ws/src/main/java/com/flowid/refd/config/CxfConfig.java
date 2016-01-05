@@ -31,8 +31,8 @@ import org.springframework.context.annotation.DependsOn;
 import com.fasterxml.jackson.jaxrs.cfg.Annotations;
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import com.flowid.futils.AppException;
 import com.flowid.refd.service.CountryResource;
-import com.flowid.xdo.util.AppException;
 
 @Configuration
 public class CxfConfig {

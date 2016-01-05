@@ -26,6 +26,7 @@
             <artifactId>joda-time</artifactId>
         </dependency>
 
+
         <!-- Spring Data JPA -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -147,7 +148,7 @@
                             <failIfNoTests>false</failIfNoTests>
                             <redirectTestOutputToFile>true</redirectTestOutputToFile>
                             <includes>
-                                <include>${jtest}</include>
+                                <include>${jtest}.java</include>
                             </includes>
                         </configuration>
                     </execution>

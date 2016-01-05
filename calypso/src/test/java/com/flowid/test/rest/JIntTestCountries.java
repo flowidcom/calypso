@@ -29,7 +29,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.flowid.rest.test.AbstractJIntTest;
+import com.flowid.test.util.AbstractJIntTest;
 import com.flowid.xdo.cmn.GList;
 import com.flowid.xdo.cmn.Upload;
 

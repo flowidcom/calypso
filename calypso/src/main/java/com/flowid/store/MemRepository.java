@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.flowid.xdo.util.AppAssert;
+import com.flowid.futils.AppAssert;
 
 /**
  * Basic implementation of an in-memory repository used in testing collection-based resources.

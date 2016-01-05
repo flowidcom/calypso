@@ -1,4 +1,4 @@
-package com.flowid.xdo.util;
+package com.flowid.futils;
 
 import java.util.LinkedHashMap;
 import java.util.List;

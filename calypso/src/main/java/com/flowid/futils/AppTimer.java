@@ -1,4 +1,4 @@
-package com.flowid.xdo.util;
+package com.flowid.futils;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;

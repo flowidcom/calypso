@@ -1,4 +1,4 @@
-package com.flowid.rest.test;
+package com.flowid.test.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
